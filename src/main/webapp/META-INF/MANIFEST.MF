@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven
+Built-By: ama
+Build-Jdk: 1.7.0_45
+Specification-Title: Podcastpedia - knowledge to go
+Specification-Version: 0.9.3
+Specification-Vendor: Podcastpedia
+Implementation-Title: Podcastpedia - knowledge to go
+Implementation-Version: 0.9.3
+Implementation-Vendor-Id: org.podcastpedia.web
+Implementation-Vendor: Podcastpedia
+

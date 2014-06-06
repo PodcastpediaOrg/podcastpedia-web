@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<h3>Hi Adrian, you have a new suggested podcast!</h3>
+		<p>
+			From - ${newMessage.name} / ${newMessage.email} 
+		</p>
+		<h3>
+			Podcast metadataline 
+		</h3>
+		<p>
+			${newMessage.metadataLine}
+		</p>
+		<h3>
+			With the message
+		</h3>
+		<p>
+			${newMessage.message}
+		</p>
+	</body>
+
+</html>
