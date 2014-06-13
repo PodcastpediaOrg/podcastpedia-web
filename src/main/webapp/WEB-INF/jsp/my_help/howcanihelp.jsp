@@ -1,11 +1,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div id="about_podcasting_content" class="bg_color common_radius common_mar_pad shadowy">
+	<p>
+		Podcastpedia.org is supported by the Codingpedia Association (codingpedia.org), a non-profit organisation based in Romania
+	</p>
+    <ul style="padding-left: 25px;list-style-type: none; margin-bottom:25px;margin-top:-10px;font-size:0.9em">
+        <li>
+            <strong><span style="font-size: 1.2em;">Codingpedia Association</span></strong>
+        </li>    
+        <li>
+            <strong>Tax Id Number:</strong> 33217029
+        </li>
+        <li>
+            <strong>Address:</strong> Ion Barbu Street No.9, Campulung 115100,  Arges County, Romania
+        </li>
+        <li>
+           <strong>IBAN:</strong> RO17RNCB0023141637180001
+        </li>                
+    </ul>		
+				
 	<img id='pcp_pic_contribute' src='<c:url value="/static/images/mission_pic.png"/>' alt="Podcastpedia image"/>
 	<p>
-    	Please support Podcastpedia.org by:
+    	You can show your support for Podcastpedia.org by:
     </p>
-    <ul>
+    <ul style="padding-left:15px;">
         <li>
             suggesting a podcast worth sharing at <a href="<c:url value="/how_can_i_help/add_podcast"/>">Add podcast</a>
         </li>
@@ -16,7 +34,7 @@
             leaving your improvements thoughts at <a href="<c:url value="/contact?topic=advice"/>">Suggestions</a>
         </li>   
         <li>  
-            following us and sharing your thoughts with us at 
+            following us and sharing your thoughts with us on 
 			<!-- AddThis Follow BEGIN -->
 			<div class="addthis_toolbox addthis_default_style">
 			<a class="addthis_button_facebook_follow" addthis:userid="podcastpedia"></a>
