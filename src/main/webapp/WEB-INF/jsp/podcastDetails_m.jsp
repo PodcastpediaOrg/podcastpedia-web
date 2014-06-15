@@ -52,7 +52,8 @@
 		</ul>									
 	</div>			
 	<div class="clear"></div>			
-	<div id="pod_desc"> ${podcast.description}</div> 
+	<div class="pod_desc"> ${fn:substring(podcast.description,0,500)}</div>
+	<div class="pod_desc_bigger"> ${fn:substring(podcast.description,0,750)}</div>  
 	<div class="item_wrapper">
 		<div id="pod_like" class="social_and_download">
 			<c:choose>
@@ -106,6 +107,11 @@
 					${fn:substring(episode.description,0,280)}
 				</a>   		
 			</div>	
+			<div class="ep_desc_bigger">
+				<a href="${episodeURL}" class="item_desc">
+					${fn:substring(episode.description,0,600)}
+				</a>   		
+			</div>			
 			<div class="clear"></div>
 			<div class="not_shown">					
 				<div id='mediaspace${loop.index}'>Flashplayer not supported</div>			

@@ -41,7 +41,12 @@
 				<a href="${episodeURL}" class="item_desc">
 					${fn:substring(episode.description,0,280)}
 				</a>	   		
-			</div> 
+			</div>
+			<div class="ep_desc_bigger">
+				<a href="${episodeURL}" class="item_desc">
+					${fn:substring(episode.description,0,600)}
+				</a>	   		
+			</div> 			 
 			<div class="clear"></div>
 			<div class="not_shown">					
 				<div id='mediaspace${loop.index}' class="jwp">Flashplayer not supported</div>			

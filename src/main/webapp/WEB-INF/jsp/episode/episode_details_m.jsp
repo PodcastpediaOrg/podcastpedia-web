@@ -51,6 +51,9 @@
 	<div class="ep_desc">
 		${fn:substring(episode.description,0,280)}
 	</div>	
+	<div class="ep_desc_bigger">
+		${fn:substring(episode.description,0,600)}
+	</div>	
 
 	<div id="social_and_download_curr_ep">
 		<a href="#-1" class="icon-share-episode btn-share">Share </a>
@@ -119,6 +122,11 @@
 					${fn:substring(episodeIterator.description,0,280)}
 				</a>   		
 			</div>	
+			<div class="ep_desc_bigger">
+				<a href="${episodeURL}" class="item_desc">
+					${fn:substring(episodeIterator.description,0,600)}
+				</a>   		
+			</div>			
 			<div class="clear"></div>
 			<div class="not_shown">					
 				<div id='mediaspace${loop.index}' class="jwp">Flashplayer not supported</div>			

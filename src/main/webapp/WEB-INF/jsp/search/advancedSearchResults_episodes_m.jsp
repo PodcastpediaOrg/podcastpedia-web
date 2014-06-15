@@ -50,7 +50,12 @@
 				<a href="${episodeUrl}" class="item_desc">
 					${fn:substring(episode.description,0,280)}   	
 				</a>	
-			</div>								
+			</div>		
+			<div class="ep_desc_bigger">
+				<a href="${episodeUrl}" class="item_desc">
+					${fn:substring(episode.description,0,600)}   	
+				</a>	
+			</div>										
 			<div class="clear"></div>	
 			<div class="not_shown">
 				<c:url var="currentEpisodeURL" value="/podcasts/${episode.podcastId}/${podcast_title_in_url}/episodes/${episode.episodeId}/${episode.titleInUrl}?show_other_episodes=true"/>	

@@ -50,9 +50,14 @@
 			<hr>						
 			<div class="pod_desc">		
 				<a class="item_desc" href="${urlPodcast}">						
-					${fn:substring(podcast.description,0,320)}
+					${fn:substring(podcast.description,0,350)}
 				</a> 					
-			</div>	
+			</div>
+			<div class="pod_desc_bigger">		
+				<a class="item_desc" href="${urlPodcast}">						
+					${fn:substring(podcast.description,0,750)}
+				</a> 					
+			</div>					
 			<div class="clear"></div>
 			<div class="social_and_download">
 				<a href="#${loop.index}" class="icon-share-podcast btn-share">Share </a>
