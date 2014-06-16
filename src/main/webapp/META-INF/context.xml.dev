@@ -96,7 +96,7 @@
             removeAbandoned="true"
             removeAbandonedTimeout="233"
             username="pcm"
-            password="pcm"
+            password="pcm_pw"
             driverClassName="com.mysql.jdbc.Driver"
             url="jdbc:mysql://localhost:3307/pcmDB?allowMultiQueries=true"
    /> 

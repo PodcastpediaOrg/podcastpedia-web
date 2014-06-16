@@ -7,7 +7,7 @@
 				<Set name="Url">jdbc:mysql://localhost:3307/pcmDB?allowMultiQueries=true
 				</Set>
 				<Set name="User">pcm</Set>
-				<Set name="Password">pcm</Set>
+				<Set name="Password">pcm_pw</Set>
 			</New>
 		</Arg>
 	</New>
