@@ -1386,6 +1386,14 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
 .chart li p {
   display: inline; }
 
+@media all and (min-width: 1070px), all and (min-width: 550px) and (max-width: 640px) {
+  .pod_title_start_smaller {
+    display: none; } }
+
+@media all and (max-width: 549px), all and (min-width: 641px) and (max-width: 1069px) {
+  .pod_title_start {
+    display: none; } }
+
 #separating_search_mode_line {
   margin: 20px; }
 
@@ -1419,6 +1427,36 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
   #advanced_search_form p {
     margin-left: 10px; }
 
+#support_content {
+  font-size: 1.2em;
+  padding: 10px;
+  padding-bottom: 20px; }
+  #support_content #codingpedia_assoc_ul {
+    padding-left: 25px;
+    list-style-type: none;
+    margin-bottom: 25px;
+    margin-top: -10px;
+    font-size: 0.9em; }
+
+#social_logos {
+  margin-top: 5px; }
+  #social_logos a {
+    color: #053855;
+    font-size: 1.5em;
+    padding-right: 5px;
+    text-decoration: none; }
+    #social_logos a:HOVER {
+      color: #A73030; }
+
+#pcp_pic_contribute {
+  float: left;
+  width: 150px;
+  height: 150px;
+  margin-right: 25px; }
+  @media screen and (max-width: 559px) {
+    #pcp_pic_contribute {
+      display: none; } }
+
 /***** LEFT OVERS */
 #about_podcasting_content {
   font-size: 1.2em;
@@ -1428,6 +1466,17 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
   margin: 5px;
   padding: 0;
   margin-bottom: 45px; }
+  @media screen and (min-width: 720px) {
+    .ep_desc, .pod_desc {
+      display: none; } }
+
+.ep_desc_bigger, .pod_desc_bigger {
+  margin: 5px;
+  padding: 0;
+  margin-bottom: 45px; }
+  @media screen and (max-width: 719px) {
+    .ep_desc_bigger, .pod_desc_bigger {
+      display: none; } }
 
 .social_and_download, #social_and_download_curr_ep {
   margin-top: 10px;
@@ -1473,10 +1522,4 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
   float: left;
   width: 120px;
   height: 120px;
-  margin-right: 20px; }
-
-#pcp_pic_contribute {
-  float: left;
-  width: 150px;
-  height: 150px;
   margin-right: 20px; }

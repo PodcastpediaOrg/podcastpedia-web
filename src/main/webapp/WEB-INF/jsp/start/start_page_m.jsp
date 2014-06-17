@@ -85,8 +85,13 @@
 						</c:otherwise>
 					</c:choose>										 					
 			    	<a href="${urlPodcast}">
-			    		<img src="${podcast.urlOfImageToDisplay}" alt="Podcast image"> 
-			    		<c:out value="${podcast.title}"/> 
+			    		<img src="${podcast.urlOfImageToDisplay}" alt="Podcast image">
+			    		<span class="pod_title_start_smaller"> 
+			    			<c:out value="${fn:substring(podcast.title,0,90)}"/>
+			    		</span>
+			    		<span class="pod_title_start"> 
+			    			<c:out value="${fn:substring(podcast.title,0,140)}"/>
+						</span>			    			
 			    	</a>
 					<p class="pub_date">
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${podcast.publicationDate}" />
@@ -124,7 +129,12 @@
 					</c:choose>						
 					<a href="${urlPodcast}">
 						<img src="${podcast.urlOfImageToDisplay}" alt="Podcast image">
-						<c:out value="${podcast.title}"/> 
+			    		<span class="pod_title_start_smaller"> 
+			    			<c:out value="${fn:substring(podcast.title,0,90)}"/>
+			    		</span>
+			    		<span class="pod_title_start"> 
+			    			<c:out value="${fn:substring(podcast.title,0,140)}"/>
+						</span>	
 					</a>
 					<p class="pub_date">
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${podcast.publicationDate}" />
@@ -165,7 +175,12 @@
 						</c:choose>											 				    	 						
 						<a href="${urlPodcast}">
 							<img src="${podcast.urlOfImageToDisplay}" alt="Podcast image">
-							<c:out value="${podcast.title}"/> 
+			    		<span class="pod_title_start_smaller"> 
+			    			<c:out value="${fn:substring(podcast.title,0,90)}"/>
+			    		</span>
+			    		<span class="pod_title_start"> 
+			    			<c:out value="${fn:substring(podcast.title,0,140)}"/>
+						</span>	 
 						</a>
 						<p class="pub_date">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${podcast.publicationDate}" />
@@ -202,7 +217,12 @@
 						</c:choose>										 				    	 						
 						<a href="${urlPodcast}">
 							<img src="${podcast.urlOfImageToDisplay}" alt="Podcast image">
-							<c:out value="${podcast.title}"/> 
+				    		<span class="pod_title_start_smaller"> 
+				    			<c:out value="${fn:substring(podcast.title,0,90)}"/>
+				    		</span>
+				    		<span class="pod_title_start"> 
+				    			<c:out value="${fn:substring(podcast.title,0,140)}"/>
+							</span>	
 						</a>
 						<p class="pub_date">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${podcast.publicationDate}" />
