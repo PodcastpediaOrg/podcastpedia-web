@@ -20,5 +20,17 @@ Web application backing the [Podcastpedia.org](http://www.podcastpedia.org) webs
 3. change to the root folder of the project and excute the following maven command 
 
 ```
-mvn clean install -DskipTests 
+mvn clean install -DskipTests=true
 ```
+
+### Run the project
+The easiest you can start the project with Jetty with the help of jetty-maven-plugin, by issuing the following command on the command line in the root directory:
+
+```
+mvn jetty:run -Djetty.port=8080
+```
+and then access the Podcastpedia website at http//localhost:8080
+
+## License
+
+[MIT](https://github.com/podcastpedia/podcastpedia-web/blob/master/LICENSE.txtE) &copy; [Codingpedia Association](http://www.codingpedia.org/about-us/)
