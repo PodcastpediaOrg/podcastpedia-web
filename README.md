@@ -33,4 +33,4 @@ and then access the Podcastpedia website at http//localhost:8080
 
 ## License
 
-[MIT](https://github.com/podcastpedia/podcastpedia-web/blob/master/LICENSE.txtE) &copy; [Codingpedia Association](http://www.codingpedia.org/about-us/)
+[MIT](https://github.com/podcastpedia/podcastpedia-web/blob/master/LICENSE.txt) &copy; [Codingpedia Association](http://www.codingpedia.org/about-us/)
