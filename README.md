@@ -11,6 +11,7 @@ Web application backing the [Podcastpedia.org](http://www.podcastpedia.org) webs
 * JDK 1.7 (if you want to use Jetty 9 with the jetty-maven-plugin from project)
 * Maven 3.*
 * Tomcat 7+ to be able to run the application on the Tomcat server
+* install [podcastpedia-parent](https://github.com/podcastpedia/podcastpedia-parent) and [podcastpedia-common](https://github.com/podcastpedia/podcastpedia-common) in your local Maven repository
 
 > Note: The application can be easily run from Jetty, with the help of jetty-maven-plugin which is configured in the [pom.xml](https://github.com/podcastpedia/podcastpedia-web/blob/master/pom.xml)
 
