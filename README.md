@@ -43,10 +43,10 @@ Download [podcastpedia-parent](https://github.com/podcastpedia/podcastpedia-pare
 
 > Note: The application can be easily run from [Jetty](http://wiki.eclipse.org/Jetty), with the help of [jetty-maven-plugin](http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin) which is configured in the [pom.xml](https://github.com/podcastpedia/podcastpedia-web/blob/master/pom.xml)
 
-### Install the __podcastpedia-web__ project
+### Install the _podcastpedia-web_ project
 1. download/clone the project 
 2. as mentioned in the **Prerequisites** section you need to prepare the database as described in the [README.md](https://github.com/podcastpedia/podcastpedia-sql) of the podcastpedia-sql project
-3. change to the __podcastpedia-web__ folder and excute the following maven command 
+3. change to the _podcastpedia-web_ folder and excute the following maven command 
 
 ```
 mvn clean install -DskipTests=true
@@ -58,9 +58,9 @@ mvn clean install -DskipTests=true
 ```
 mvn jetty:run -Djetty.port=8080
 ``` 
-and then access the Podcastpedia website at __http://localhost:8080__
+and then access the Podcastpedia website at _http://localhost:8080_
 
-* Or copy the generated war file (__ROOT.war__) to your Tomcat __webapps__ folder and start the server. By default you can access the application under the same url __http://localhost:8080__
+* Or copy the generated war file (_ROOT.war_) to your Tomcat _webapps_ folder and start the server. By default you can access the application under the same url _http://localhost:8080_
 
 ## License
 
