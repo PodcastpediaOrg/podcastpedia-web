@@ -16,16 +16,9 @@
 	<h2 class="title_before_form"><spring:message code="contact.header" text="Contact us"/> </h2> 
 	<hr class="before_form_header_line"/>
 	<div id="contact_follow_us">
-		<!-- AddThis Follow BEGIN -->
-		<p></p>
-		<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
-		<a class="addthis_button_facebook_follow" addthis:userid="podcastpedia"></a>
-		<a class="addthis_button_twitter_follow" addthis:userid="podcastpedia"></a>
-		<a class="addthis_button_google_follow" addthis:userid="101757667729624824161"></a>		
-		<a class="addthis_button_rss_follow" addthis:userid="http://www.podcastpedia.org/feeds/newest.rss"></a>
-		</div>
-		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518e3b5a03c67761"></script>
-		<!-- AddThis Follow END -->
+		<a href="http://www.twitter.com/podcastpedia" target="_blank" class="icon-twitter-producer producer-social"></a> 			 		
+		<a href="http://www.facebook.com/podcastpedia" target="_blank" class="icon-facebook-producer producer-social"></a>
+		<a href="http://plus.google.com/+PodcastpediaOrg" target="_blank" class="icon-google-plus-producer producer-social"></a>		
 	</div>
 		
     <c:url value="/contact.html" var="addComment_url"/>	
