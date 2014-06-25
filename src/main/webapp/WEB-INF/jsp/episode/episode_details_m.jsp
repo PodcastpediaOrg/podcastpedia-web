@@ -79,9 +79,18 @@
 		</c:choose>		
 		<a href="${podcast_link}" class="btn-share">${episode.podcast.title}</a>
 	</p>   	  
-	<p id="feed-and-ep-link">	
-		<a href="${episode.podcast.url}" target="_blank" class="btn-metadata1 icon-feed2">Feed</a> 
-		<a href="${episode.link}" target="_blank" class="btn-metadata1">Episode link</a>			
+	<p id="feed-and-ep-link">			
+		<a href="${episode.podcast.link}" target="_blank" class="btn-metadata1 icon-globe">Website</a>
+		<a href="${episode.podcast.url}" target="_blank"  class="icon-feed-producer  producer-social"></a>		
+		<c:if test="${not empty episode.podcast.twitterPage}">
+			<a href="${episode.podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social"></a>
+		</c:if> 			 		
+		<c:if test="${not empty episode.podcast.fbPage}">
+			<a href="${episode.podcast.fbPage}" target="_blank" class="icon-facebook-producer producer-social"></a>
+		</c:if> 			 		
+		<c:if test="${not empty episode.podcast.gplusPage}">
+			<a href="${episode.podcast.gplusPage}" target="_blank" class="icon-google-plus-producer producer-social"></a>
+		</c:if> 				
 	</p>	
 	<!-- TODO when email job is ready uncomment this 	 	 
 	<p>

@@ -21,7 +21,11 @@
 		<result column="podcast_title_in_url" property="podcast.titleInUrl" />
 		<result column="podcast_url" property="podcast.url" />
 		<result column="podcast_image_url" property="podcast.urlOfImageToDisplay" />
-		<result column="podcast_title" property="podcast.title" />
+		<result column="podcast_title" property="podcast.title" />	
+		<result column="podcast_link" property="podcast.link" />			
+		<result column="social_fb_page" property="podcast.fbPage" />
+		<result column="social_twitter_page" property="podcast.twitterPage" />
+		<result column="social_gplus_page" property="podcast.gplusPage" />					
 		<result column="is_new" property="isNew" />
    	    <result column="length" property="length"/>   
    	    <result column="enclosure_type" property="enclosureType"/>  
@@ -97,7 +101,11 @@
       	p.url as podcast_url,
       	p.podcast_image_url,
       	p.title as podcast_title,
-      	p.identifier as podcast_identifier	
+      	p.identifier as podcast_identifier,
+      	p.podcast_link as podcast_link,
+    	p.social_fb_page,
+    	p.social_twitter_page,
+    	p.social_gplus_page        		
    	FROM episodes e, podcasts p 	
     WHERE
       e.podcast_id = #{podcastId}

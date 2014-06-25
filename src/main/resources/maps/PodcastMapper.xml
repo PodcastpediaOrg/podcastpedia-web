@@ -62,6 +62,9 @@
 	    <result column="last_modified_header_field_str" property="lastModifiedHeaderFieldStr" />  
 	    <result column="publication_date" property="publicationDate"/>    
 	    <result column="number_episodes" property="numberOfEpisodes"/>
+	    <result column="social_fb_page" property="fbPage"/>
+	    <result column="social_twitter_page" property="twitterPage"/>
+	    <result column="social_gplus_page" property="gplusPage"/>			    
 		<collection property="categories" ofType="Category">
 			<id property="categoryId" column="category_id"/>
 			<result property="name" column="category_name"/>
@@ -113,6 +116,9 @@
     	p.last_modified_header_field_str,
     	p.publication_date,
     	p.number_episodes,
+    	p.social_fb_page,
+    	p.social_twitter_page,
+    	p.social_gplus_page,    	
       	c.category_id,
       	c.name as category_name,
      	c.description as category_descrption,
@@ -168,6 +174,9 @@
     	p.last_modified_header_field_str,
     	p.publication_date,
     	p.number_episodes,
+    	p.social_fb_page,
+    	p.social_twitter_page,
+    	p.social_gplus_page,
       	c.category_id,
       	c.name as category_name,
      	c.description as category_descrption,

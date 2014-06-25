@@ -26,8 +26,17 @@
 		</h2>									    		
 	</div>	
 	<p>
-		<a href="${podcast.url}" target="_blank"  class="btn-metadata1 icon-feed2">Feed</a>
-		<a href="${podcast.link}" target="_blank" class="btn-metadata1 icon-globe">Website</a> 			 
+		<a href="${podcast.link}" target="_blank" class="btn-metadata1 icon-globe">Website</a>
+		<a href="${podcast.url}" target="_blank"  class="icon-feed-producer  producer-social"></a>		
+		<c:if test="${not empty podcast.twitterPage}">
+			<a href="${podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social"></a>
+		</c:if> 			 		
+		<c:if test="${not empty podcast.fbPage}">
+			<a href="${podcast.fbPage}" target="_blank" class="icon-facebook-producer producer-social"></a>
+		</c:if> 			 		
+		<c:if test="${not empty podcast.gplusPage}">
+			<a href="${podcast.gplusPage}" target="_blank" class="icon-google-plus-producer producer-social"></a>
+		</c:if> 			 
 	</p>		
 	<div id="categs">		
 	    <b><spring:message code="header.menu.categories" text="Categories"/> </b> 
