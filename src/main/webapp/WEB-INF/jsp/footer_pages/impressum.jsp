@@ -7,7 +7,7 @@ Bahnhoftstr. 17<br />
 <h2>Kontakt:</h2>
 <table><tr>
 <td><p>Telefon:</p></td>
-<td><p>+4915789246551</p></td></tr>
+<td><p>+49 157 892 61 091</p></td></tr>
 <tr><td><p>E-Mail:</p></td>
 <td><p>contact@podcastpedia.org</p></td>
 </tr></table>
