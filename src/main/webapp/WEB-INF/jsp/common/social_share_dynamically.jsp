@@ -15,7 +15,10 @@
 				playerDiv.css("margin-bottom","75px");
 			} else {
 				//player not shown widen the distance to insert the sharing buttons 
-				currentDiv.find("div.ep_desc").css("margin-bottom","75px");	
+				currentDiv.find("div.ep_desc").css("margin-bottom","75px");
+				currentDiv.find("div.ep_desc_bigger").css("margin-bottom","75px");	
+				currentDiv.find("div.pod_desc").css("margin-bottom","55px");
+				currentDiv.find("div.pod_desc_bigger").css("margin-bottom","55px");
 			}
 			//the share button is being replaced with social media buttons
 			$(e.target).remove();
@@ -45,7 +48,8 @@
 			var epUrl= currentDiv.find("span.item_url_ep").text();
 			
 			//widen the distance to insert the sharing buttons 
-			$('#current_episode').find(".ep_desc").css("margin-bottom","75px");	
+			$('#current_episode').find(".ep_desc").css("margin-bottom","75px");
+			$('#current_episode').find(".ep_desc_bigger").css("margin-bottom","75px");	
 
 			//the share button is being replaced with social media buttons
 			$(e.target).remove();
