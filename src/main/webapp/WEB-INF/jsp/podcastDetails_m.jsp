@@ -26,7 +26,7 @@
 		</h2>									    		
 	</div>	
 	<p>
-		<a href="${podcast.link}" target="_blank" class="btn-metadata1 icon-globe">Website</a>
+		<a href="${podcast.link}" target="_blank" class="icon-globe-producer producer-social"></a>
 		<a href="${podcast.url}" target="_blank"  class="icon-feed-producer  producer-social"></a>		
 		<c:if test="${not empty podcast.twitterPage}">
 			<a href="${podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social"></a>
@@ -61,9 +61,9 @@
 		</ul>									
 	</div>			
 	<div class="clear"></div>			
-	<div class="pod_desc"> ${fn:substring(podcast.description,0,500)}</div>
-	<div class="pod_desc_bigger"> ${fn:substring(podcast.description,0,750)}</div>  
 	<div class="item_wrapper">
+		<div class="pod_desc"> ${fn:substring(podcast.description,0,500)}</div>
+		<div class="pod_desc_bigger"> ${fn:substring(podcast.description,0,750)}</div>  	
 		<div id="pod_like" class="social_and_download">
 			<c:choose>
 				<c:when test="${podcast.identifier == null}">

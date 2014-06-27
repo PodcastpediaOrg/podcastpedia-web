@@ -80,7 +80,7 @@
 		<a href="${podcast_link}" class="btn-share">${episode.podcast.title}</a>
 	</p>   	  
 	<p id="feed-and-ep-link">			
-		<a href="${episode.podcast.link}" target="_blank" class="btn-metadata1 icon-globe">Website</a>
+		<a href="${episode.podcast.link}" target="_blank" class="icon-globe-producer producer-social"></a>
 		<a href="${episode.podcast.url}" target="_blank"  class="icon-feed-producer  producer-social"></a>		
 		<c:if test="${not empty episode.podcast.twitterPage}">
 			<a href="${episode.podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social"></a>
