@@ -80,16 +80,16 @@
 		<a href="${podcast_link}" class="btn-share">${episode.podcast.title}</a>
 	</p>   	  
 	<p id="feed-and-ep-link">			
-		<a href="${episode.podcast.link}" target="_blank" class="icon-globe-producer producer-social"></a>
-		<a href="${episode.podcast.url}" target="_blank"  class="icon-feed-producer  producer-social"></a>		
+		<a href="${episode.podcast.link}" target="_blank" class="icon-globe-producer producer-social" title="Website"></a>
+		<a href="${episode.podcast.url}" target="_blank"  class="icon-feed-producer  producer-social" title="Feed"></a>		
 		<c:if test="${not empty episode.podcast.twitterPage}">
-			<a href="${episode.podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social"></a>
+			<a href="${episode.podcast.twitterPage}" target="_blank" class="icon-twitter-producer producer-social" title="Twitter"></a>
 		</c:if> 			 		
 		<c:if test="${not empty episode.podcast.fbPage}">
-			<a href="${episode.podcast.fbPage}" target="_blank" class="icon-facebook-producer producer-social"></a>
+			<a href="${episode.podcast.fbPage}" target="_blank" class="icon-facebook-producer producer-social" title="Facebook Fan Page"></a>
 		</c:if> 			 		
 		<c:if test="${not empty episode.podcast.gplusPage}">
-			<a href="${episode.podcast.gplusPage}" target="_blank" class="icon-google-plus-producer producer-social"></a>
+			<a href="${episode.podcast.gplusPage}" target="_blank" class="icon-google-plus-producer producer-social" title="Google+"></a>
 		</c:if> 				
 	</p>	
 	<!-- TODO when email job is ready uncomment this 	 	 
