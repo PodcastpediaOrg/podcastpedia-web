@@ -33,14 +33,13 @@ public class EmailNotificationServiceImpl implements EmailNotificationService {
 		             message.setSubject("New suggested podcast");
 		             message.setSentDate(new Date());
 		             Map model = new HashMap();	             
-		             model.put("newMessage", suggestedPodcast);
-		             
+		             model.put("newPodcast", suggestedPodcast);		             
 		             String text = VelocityEngineUtils.mergeTemplateIntoString(
 		                velocityEngine, "velocity/suggestPodcastNotificationMessage.vm", "UTF-8", model);
 		             message.setText(text, true);
 		          }
 		       };
-		       this.mailSender.send(preparator);			
+		       mailSender.send(preparator);			
 	}
 	
 	public JavaMailSender getMailSender() {

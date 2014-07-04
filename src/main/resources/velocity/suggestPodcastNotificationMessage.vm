@@ -2,19 +2,19 @@
 	<body>
 		<h3>Hi Adrian, you have a new suggested podcast!</h3>
 		<p>
-			From - ${newMessage.name} / ${newMessage.email} 
+			From - ${newPodcast.name} / ${newPodcast.email} 
 		</p>
 		<h3>
 			Podcast metadataline 
 		</h3>
 		<p>
-			${newMessage.metadataLine}
+			${newPodcast.metadataLine}
 		</p>
 		<h3>
 			With the message
 		</h3>
 		<p>
-			${newMessage.message}
+			${newPodcast.message}
 		</p>
 	</body>
 
