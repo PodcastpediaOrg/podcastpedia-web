@@ -153,7 +153,7 @@
 		<div class="label_above_elements">
 			<img class="recommend_social" alt="Facebook" title="Facebook fan page" src="<c:url value="/static/images/logos/fb_51.png"/>">			
 			<label for="facebookPage" class="label">
-				Fanpage Facebook (e.g. <em>https://www.facebook.com/Podcastpedia</em>)
+				Fanpage Facebook (complete URL - e.g. <em>https://www.facebook.com/Podcastpedia</em>)
 			</label>		
 		</div>	
 		<p>										
@@ -163,7 +163,7 @@
 		<div class="label_above_elements">
 			<img class="recommend_social" alt="Twitter" title="Twitter fan page" src="<c:url value="/static/images/logos/twitter_51.png"/>">	
 			<label for="twitterPage" class="label">
-				Fanpage Twitter  (e.g. <em>https://twitter.com/podcastpedia</em>)
+				Fanpage Twitter (complete URL - e.g. <em>https://twitter.com/podcastpedia</em>)
 			</label>		
 		</div>	
 		<p>										
@@ -173,7 +173,7 @@
 		<div class="label_above_elements">
 			<img class="recommend_social" alt="Google plus" title="G+ fan page" src="<c:url value="/static/images/logos/gplus_51.png"/>">
 			<label for="gplusPage" class="label">
-				Fanpage Google Plus (e.g. <em>https://google.com/+PodcastpediaOrg</em>)
+				Fanpage Google Plus (complete URL - e.g. <em>https://google.com/+PodcastpediaOrg</em>)
 			</label>		
 		</div>	
 		<p>										
