@@ -30,6 +30,8 @@ public interface PodcastDao {
 	   */
 	  public Podcast getPodcastWithEpisodesById(Integer podcastId);
 	  
+	  public Podcast getPodcastWithEpisodesByIdentifier(String identifier);	  
+	  
 	  /**
 	   * Retrieve a podcast by its url. 
 	   * 
@@ -59,12 +61,15 @@ public interface PodcastDao {
 	   */
       public Integer getNumberEpisodesForPodcast(Integer podcastId);
 
+	  public Integer getNumberEpisodesForPodcastIdentifier(String identifier);	
+	  
       /**
        * Returns the podcast from the database but without its episodes 
        * @param podcastId
        * @return
        */
 	  public Podcast getPodcastById(Integer podcastId);
+	  public Podcast getPodcastByIdentifier(String identifier);	  
 	  
 	  
 	  /**
@@ -81,5 +86,6 @@ public interface PodcastDao {
 	   * @param identifier
 	   * @return
 	   */
-	  public Integer getPodcastIdForIdentifier(String identifier);	  
+	  public Integer getPodcastIdForIdentifier(String identifier);
+  
 }

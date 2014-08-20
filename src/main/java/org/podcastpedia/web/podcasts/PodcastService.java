@@ -40,7 +40,7 @@ public interface PodcastService {
 	*/
 	public List<Podcast> getPodcastAttributesByFeedUrl(String feedUrl);
 
-	public Podcast getPodcastShortUrl(String podcastShortUrl)  throws BusinessException;		  
+	public Podcast getPodcastForIdentifier(String identifier)  throws BusinessException;		  
 	  
 }
 

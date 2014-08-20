@@ -27,6 +27,8 @@
     <!-- ========================= Service beans configuration ========================= -->
 	<bean id="podcastService" class="org.podcastpedia.web.podcasts.PodcastServiceImpl">
 		<property name="podcastDao" ref="podcastDao"/>
+		<property name="episodeDao" ref="episodeDao"/>
+		<property name="configService" ref="configService"/>
 	</bean>
 	
 	<bean id="episodeService" class="org.podcastpedia.web.episodes.EpisodeServiceImpl">

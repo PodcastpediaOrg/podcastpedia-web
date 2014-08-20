@@ -69,7 +69,7 @@ public class PodcastIdentifierController {
 		LOG.debug("------ getPodcastDetails : Received request to show details for podcast id "
 				+ podcastShortUrl + " ------");
 
-		Podcast podcast = podcastService.getPodcastShortUrl(podcastShortUrl);
+		Podcast podcast = podcastService.getPodcastForIdentifier(podcastShortUrl);
 
 		// add the last episodes to be displayed under the podcast metadata
 		List<Episode> lastEpisodes = null;

@@ -1,6 +1,5 @@
-package org.podcastpedia.test.util.impl;
+package org.podcastpedia.test.util;
 
-import org.podcastpedia.test.util.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 

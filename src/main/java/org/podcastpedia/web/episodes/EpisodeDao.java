@@ -73,6 +73,7 @@ public interface EpisodeDao {
 	 * @return
 	 */
 	public List<Episode> getLastEpisodesForPodcast(Map<String, Object> params);
+	public List<Episode> getLastEpisodesForPodcastIdentifier(Map<String, Object> params);	
 
 	/**
 	 * Inserts posted comment in the database
@@ -100,5 +101,6 @@ public interface EpisodeDao {
 
 	public Episode getPodcastDataForUnexistantEpisode(Integer podcastId);
 	
-	public List<Episode> getAllEpisodesForPodcast(Integer podcastId);	
+	public List<Episode> getAllEpisodesForPodcast(Integer podcastId);
+	
 }

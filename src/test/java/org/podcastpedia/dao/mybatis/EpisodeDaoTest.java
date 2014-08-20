@@ -53,4 +53,16 @@ public class EpisodeDaoTest {
 		
 		Assert.assertTrue(surroundingEpisodesByEpisodeId.size() > 0);
 	}
+	
+	@Test 
+	public void testGetLastEpisodesForPodcastIdentifier() throws Exception {
+		LOG.debug(" \n\n------ executing PodcastDaoTest.testGetPodcastByUrl -------");
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("identifier", "quarks");
+		params.put("limit", 10);		
+		List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcastIdentifier(params);
+		
+		Assert.assertTrue(lastEpisodes.size() > 0);
+	}	
 }

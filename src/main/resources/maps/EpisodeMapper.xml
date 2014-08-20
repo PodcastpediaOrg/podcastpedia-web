@@ -79,7 +79,31 @@
     ORDER BY
     	e.publication_date DESC
     LIMIT #{limit}
-  </select>    
+  </select>
+  <select id="getLastEpisodesForPodcastIdentifier" parameterType="map" resultMap="episodeResultMap">
+    SELECT
+		e.podcast_id,
+		e.episode_id,
+        e.description as episode_description,
+        e.link as episode_link,
+        e.media_url as episode_media_url,
+        e.media_type as episode_media_type, 
+      	e.title as episode_title,
+      	e.publication_date as episode_pub_date,
+      	e.title_in_url as episode_title_in_url,
+      	e.is_new    	
+   	FROM 
+   		episodes e, podcasts p 	
+    WHERE
+    	e.podcast_id = p.podcast_id    	
+    AND 
+    	p.identifier = #{identifier}
+    AND
+    	e.availability = 200 
+    ORDER BY
+    	e.publication_date DESC
+    LIMIT #{limit}
+  </select>       
    
   <select id="getEpisodeById" parameterType="java.util.Map" resultMap="episodeResultMap">
     SELECT
