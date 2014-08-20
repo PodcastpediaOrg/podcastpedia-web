@@ -58,6 +58,10 @@
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>	
 	   <property name="mapperInterface" value="org.podcastpedia.web.tags.TagDao" />
 	</bean>		
+	<bean id="emailSubscriptionDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>	
+	   <property name="mapperInterface" value="org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriptionDao" />
+	</bean>			
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:config/mybatisV3-config.xml"/>

@@ -14,6 +14,8 @@ import org.podcastpedia.common.domain.Tag;
 import org.podcastpedia.web.suggestpodcast.SuggestedPodcast;
 import org.podcastpedia.web.tags.TagDao;
 import org.podcastpedia.web.userinteraction.UserInteractionDao;
+import org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriber;
+import org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriptionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -40,6 +42,10 @@ public class UserInteractionDaoTest {
 	
 	@Autowired
 	private TagDao tagDao;
+	
+	@Autowired
+	private EmailSubscriptionDao emailSubscriptionDao;
+	
 	
 	@Ignore @Test
 	public void testGetAllCategories() throws Exception {
@@ -104,5 +110,17 @@ public class UserInteractionDaoTest {
 		
 		Assert.assertTrue(tagList.size() > 10); 
 		
-	}		
+	}
+	
+	@Test
+	public void testGetEmailSubscriber() {
+		EmailSubscriber selectEmailSubscriberByEmail = emailSubscriptionDao.selectEmailSubscriberByEmail("adrian.matei@yahoo.com");
+		LOG.info(selectEmailSubscriberByEmail);
+	}
+	
+	@Test
+	public void testGetEmailSubscriberSebastian() {
+		EmailSubscriber selectEmailSubscriberByEmail = emailSubscriptionDao.selectEmailSubscriberByEmail("sebastian.g.matei@gmail.com");
+		LOG.info(selectEmailSubscriberByEmail);
+	}	
 }

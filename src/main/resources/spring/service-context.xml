@@ -55,5 +55,8 @@
 	<bean id="contactService" class="org.podcastpedia.web.contact.ContactServiceImpl"/>
 	
 	<bean id="cacheUpdateService" class="org.podcastpedia.web.caching.CacheUpdateServiceImpl"/>
-	   	
+
+	<bean id="emailSubscriptionService" class="org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriptionServiceImpl">
+		<property name="emailSubscriptionDao" ref="emailSubscriptionDao"/>
+	</bean> 	   	
 </beans>

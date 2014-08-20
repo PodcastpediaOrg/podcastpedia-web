@@ -33,6 +33,7 @@
 		<typeAlias type="org.podcastpedia.common.domain.Comment" alias="Comment"/>
 		<typeAlias type="org.podcastpedia.web.suggestpodcast.SuggestedPodcast" alias="SuggestedPodcast"/>
 		<typeAlias type="org.podcastpedia.web.contact.ContactForm" alias="ContactForm"/>
+		<typeAlias type="org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriber" alias="EmailSubscriber"/>	
 	</typeAliases>
     <typeHandlers>
     	<typeHandler handler="org.podcastpedia.common.mybatis.typehandlers.MediaTypeHandler" javaType="org.podcastpedia.common.types.MediaType"/>
@@ -47,6 +48,7 @@
         <mapper resource="maps/SearchMapper.xml" />
         <mapper resource="maps/UserInteractionMapper.xml" />
         <mapper resource="maps/StartPageMapper.xml" />
-        <mapper resource="maps/TagMapper.xml" />                
+        <mapper resource="maps/TagMapper.xml" />
+        <mapper resource="maps/EmailSubscriptionMapper.xml" />                         
     </mappers>
 </configuration>
