@@ -1166,11 +1166,15 @@ a.producer-social {
   text-decoration: none;
   margin-right: 5px; }
 
-.icon-social-producer, .icon-feed-producer:before, .icon-facebook-producer:before, .icon-twitter-producer:before, .icon-google-plus-producer:before {
+.icon-social-producer, .icon-globe-producer:before, .icon-feed-producer:before, .icon-facebook-producer:before, .icon-twitter-producer:before, .icon-google-plus-producer:before, .icon-email-subscribe:before {
   vertical-align: middle; }
 
+.icon-globe-producer:before {
+  color: #084B8A;
+  content: "\e658"; }
+
 .icon-feed-producer:before {
-  color: #d15c2e;
+  color: #DF7401;
   content: "\e643"; }
 
 .icon-facebook-producer:before {
@@ -1184,6 +1188,11 @@ a.producer-social {
 .icon-google-plus-producer:before {
   color: #dd4b39;
   content: "\e63c"; }
+
+.icon-email-subscribe:before {
+  font-size: 2em;
+  text-decoration: none;
+  content: "\e63a"; }
 
 #episode_metadata {
   margin-top: 15px;

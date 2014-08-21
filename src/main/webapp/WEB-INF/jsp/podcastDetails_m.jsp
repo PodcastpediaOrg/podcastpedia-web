@@ -37,7 +37,12 @@
 		<c:if test="${not empty podcast.gplusPage}">
 			<a href="${podcast.gplusPage}" target="_blank" class="icon-google-plus-producer producer-social" title="Google+"></a>
 		</c:if> 			 
-	</p>		
+	</p>
+	<c:if test="${podcast.updateFrequency == 'DAILY' || podcast.updateFrequency == 'WEEKLY' || podcast.updateFrequency == 'MONTHLY'}">		
+	<p>
+		<b><spring:message code="pod_details.subscribe_via" text="Subscribe"/></b> &nbsp;<a id="subscribeItAnchor" class="icon-email-subscribe" title="email"></a>		
+	</p>
+	</c:if> 		
 	<div id="categs">		
 	    <b><spring:message code="header.menu.categories" text="Categories"/> </b> 
 	    <ul>
@@ -55,7 +60,7 @@
 			<c:forEach items="${podcast.tags}" var="tag" varStatus="loop">
 				<li>
 				<c:url value="/tags/${tag.tagId}/${tag.name}" var="urlTag" />	
-					<a href="${urlTag}"  class="btn-metadata2"><span>${tag.name}</span></a>
+					<a href="${urlTag}" class="btn-metadata2"><span>${tag.name}</span></a>
 				</li>								
 			</c:forEach>	
 		</ul>									
@@ -173,10 +178,35 @@
 
 <!-- javascript libraries required -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+
 <!-- include loading dynamic player page -->
 <%@ include file="/WEB-INF/jsp/common/load_player_dynamically.jsp" %>
 <!-- dynamic social share -->
 <%@ include file="/WEB-INF/jsp/common/social_share_dynamically.jsp" %>
+<%@ include file="/WEB-INF/jsp/common/email_subscription_javascript.jsp" %>
+
+<!-- jquery dialogs -->
+<div id="subscribe-form" title="Podcast subscription">
+	<form class="vertical_style_form">
+		<div id="label_above_elements">
+			<label for="email" class="label">
+				<spring:message code="label.email" text="Email - required, verified but never shown"/>
+			</label>
+		</div>									
+		<p>			
+			<input name="email" id="sub_email" class="form_input" style='width:200'/>													
+		</p>
+			<input type="hidden" name="podcastId" id="sub_podcastId" value="${podcast.podcastId}"/>
+	</form>
+</div>
+<!-- 			  -->
+<div id="dialog-subscribed" title="Subscription successful">
+	<p>
+		<spring:message code="pod_details.subscription.thanks" text="Thank your for subscribing to the podcast. Will will send you an email with new episodes when they become available."/>
+	</p>
+</div>	
 
 <div id="disqus_comments" class="shadowy">
     <div id="disqus_thread"></div>
