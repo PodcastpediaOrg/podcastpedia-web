@@ -179,7 +179,6 @@
 <!-- javascript libraries required -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
 <!-- include loading dynamic player page -->
 <%@ include file="/WEB-INF/jsp/common/load_player_dynamically.jsp" %>

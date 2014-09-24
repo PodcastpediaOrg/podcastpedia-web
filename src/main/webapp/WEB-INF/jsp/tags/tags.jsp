@@ -3,13 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix='fn' uri='http://java.sun.com/jsp/jstl/functions' %>
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -56,7 +54,7 @@ $(document).ready(function() {
 <div id="all_tags" class="common_radius bg_color shadowy">						
 	<div id="find_keyword">
 		<div class="ui-widget">			
-			<input name="tagQuery" id="tagQuery" placeholder="<spring:message code="find.keyword" text="Type keyword..."/>">
+			<input name="tagQueryName" id="tagQuery" class="ui-autocomplete-input ui-corner-all" placeholder="<spring:message code="find.keyword" text="Type keyword..."/>">
 		</div>	
 	</div>
 	<div id="selected_tags"><span></span></div>
