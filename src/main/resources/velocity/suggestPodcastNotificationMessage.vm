@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h3>Hey Podcastpedia Team, a new podcast was suggested</h3>
+		<h3>Hey Podcastpedia Team, a new podcast was submitted</h3>
 		<p>
 			From - ${newPodcast.name} / ${newPodcast.email} 
 		</p>
