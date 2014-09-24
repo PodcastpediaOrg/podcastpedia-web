@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.podcastpedia.common.domain.Episode;
 import org.springframework.web.servlet.view.feed.AbstractRssFeedView;
 
-import com.sun.syndication.feed.rss.Channel;
-import com.sun.syndication.feed.rss.Description;
-import com.sun.syndication.feed.rss.Enclosure;
-import com.sun.syndication.feed.rss.Item;
+import com.rometools.rome.feed.rss.Channel;
+import com.rometools.rome.feed.rss.Description;
+import com.rometools.rome.feed.rss.Enclosure;
+import com.rometools.rome.feed.rss.Item;
 
 
 

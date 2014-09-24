@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.podcastpedia.common.domain.Podcast;
 import org.springframework.web.servlet.view.feed.AbstractAtomFeedView;
 
-import com.sun.syndication.feed.atom.Content;
-import com.sun.syndication.feed.atom.Entry;
-import com.sun.syndication.feed.atom.Feed;
-import com.sun.syndication.feed.atom.Link;
+import com.rometools.rome.feed.atom.Content;
+import com.rometools.rome.feed.atom.Entry;
+import com.rometools.rome.feed.atom.Feed;
+import com.rometools.rome.feed.atom.Link;
 
 
 
