@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.podcastpedia.common.domain.Category;
@@ -160,7 +161,7 @@ public class SearchDaoTest {
 		
 	}	
 	
-	@Test
+	@Ignore @Test
 	public void testGetNumberOfPodcastsWithTag() throws Exception {
 		LOG.debug(" \n\n------ executing SearchDaoTest.testGetNumberOfPodcastsFromCategory -------");
 		LOG.debug("Get number of podcasts that are in category TV&FILM");
@@ -175,7 +176,7 @@ public class SearchDaoTest {
 		
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testGetPodcastsWithTag() throws Exception {
 		LOG.debug(" \n\n------ executing SearchDaoTest.testGetNumberOfPodcastsFromCategory -------");
 		LOG.debug("Get number of podcasts that are in category TV&FILM");
@@ -191,7 +192,7 @@ public class SearchDaoTest {
 		
 	}	
 	
-	@Test
+	@Ignore @Test
 	public void testGetLimitedNumberOfPodcasts() throws Exception {
 		LOG.debug(" \n\n------ executing SearchDaoTest.testGetLimitedNumberOfPodcasts -------");
 		LOG.debug("Get [10-19] podcasts that are in German Language and are recorded between 10 and 19 in the database");

@@ -58,7 +58,7 @@ public class PodcastDaoTest {
 			
 		Podcast podcastById = podcastDao.getPodcastById(1);	
 		//verify if the podcastId has been set as expected
-		assert podcastById.getRating() != null; 	
+		assert podcastById != null; 	
 		
 	}	
 	
