@@ -11,15 +11,18 @@ public class CacheUpdateServiceImpl implements CacheUpdateService {
 	
 	
 	@CacheEvict(value="referenceData", allEntries=true)
-	public void flushReferenceDataCache() {
+	public void clearReferenceDataCache() {
 		LOG.warn("Reference data cache was flushed");
 	}
 	
 	@CacheEvict(value="newestAndRecommendedPodcasts", allEntries=true)
-	public void flushNewestAndRecommendedPodcastsCache() {
+	public void clearNewestAndRecommendedPodcastsCache() {
 		LOG.warn("Start page podcasts (newest, recommended, best rated) cache was flushed");
 	}
-	
+
+	/**
+	 * Through usage of annotations all of the managed caches will be cleared.
+	 */
 	@Caching(evict = {
 		    @CacheEvict(value="referenceData", allEntries=true),
 		    @CacheEvict(value="podcasts", allEntries=true),
@@ -27,12 +30,12 @@ public class CacheUpdateServiceImpl implements CacheUpdateService {
 		    @CacheEvict(value="newestAndRecommendedPodcasts", allEntries=true),
 		    @CacheEvict(value="randomAndTopRatedPodcasts", allEntries=true)		    
 		})	
-	public void flushAllCaches() {
-		LOG.warn("All caches have been completely flushed");		
+	public void clearAllCaches() {
+		LOG.warn("All caches have been completely cleared");
 	}
 	
 	@CacheEvict(value="searchResults", allEntries=true)
-	public void flushSearchResults() {
+	public void clearSearchResults() {
 		LOG.warn("Search results cache is completely flushed");			
 	}
 

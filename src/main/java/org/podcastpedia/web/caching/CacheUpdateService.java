@@ -3,17 +3,17 @@ package org.podcastpedia.web.caching;
 public interface CacheUpdateService {
 	
 	/** method called to flush reference data cache */
-	public void flushReferenceDataCache();
+	public void clearReferenceDataCache();
 	
 	/** method called to flush start page podcasts cache */
-	public void flushNewestAndRecommendedPodcastsCache();	
+	public void clearNewestAndRecommendedPodcastsCache();
 	
 	/** when called method will flush all existing caches */
-	public void flushAllCaches();
+	public void clearAllCaches();
 	
 	/** 
 	 * search results cache gets refreshed 
 	 */
-	public void flushSearchResults();
+	public void clearSearchResults();
 	
 }

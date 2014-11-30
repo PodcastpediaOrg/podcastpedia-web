@@ -26,7 +26,7 @@ public class CachingUpdateRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public void evictStartPagePodcastsCache(){
 		LOG.info("------ evictStartPagePodcastsCache was called --------");
-		cacheUpdateService.flushNewestAndRecommendedPodcastsCache();
+		cacheUpdateService.clearNewestAndRecommendedPodcastsCache();
 	}		
 
 	/**
@@ -36,9 +36,9 @@ public class CachingUpdateRestController {
 	 */
 	@RequestMapping("flush_search_results_cache")
 	@ResponseStatus(HttpStatus.OK)
-	public void flushSearchResultsCache(){
-		LOG.info("------ flushSearchResultsCache was called --------");
-		cacheUpdateService.flushSearchResults();
+	public void clearSearchResultsCache(){
+		LOG.info("------ clearSearchResultsCache was called --------");
+		cacheUpdateService.clearSearchResults();
 	}	
 	
 	/**
@@ -47,9 +47,9 @@ public class CachingUpdateRestController {
 	 */
 	@RequestMapping("flush_all_caches")
 	@ResponseStatus(HttpStatus.OK)
-	public void flushAllCaches(){
-		LOG.info("------ flushAllCaches was called --------");
-		cacheUpdateService.flushAllCaches();
+	public void clearAllCaches(){
+		LOG.info("------ clearAllCaches was called --------");
+		cacheUpdateService.clearAllCaches();
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class CachingUpdateRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public void renewReferenceDataCache(){
 		LOG.info("------ renewReferenceDataCache was called --------");
-		cacheUpdateService.flushReferenceDataCache();
+		cacheUpdateService.clearReferenceDataCache();
 	}
 			
 }
