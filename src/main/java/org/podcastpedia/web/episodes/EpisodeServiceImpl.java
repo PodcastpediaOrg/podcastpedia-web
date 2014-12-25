@@ -163,4 +163,18 @@ public class EpisodeServiceImpl implements EpisodeService {
 	public void setEpisodeDao(EpisodeDao episodeDao) {
 		this.episodeDao = episodeDao;
 	}
+
+	@Override
+	public List<Episode> getLatestEpisodes(Integer podcastId, Integer offset,
+			Integer limit) throws BusinessException {
+		// default is 20 if you want to get rid of the cache for config data
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("podcastId", podcastId);
+		params.put("offset", offset );
+		params.put("limit", limit);
+		
+		List<Episode> response = episodeDao.getLatestEpisodes(params);
+		return response;
+	}
 }

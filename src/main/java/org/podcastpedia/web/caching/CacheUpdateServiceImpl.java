@@ -8,8 +8,7 @@ import org.springframework.cache.annotation.Caching;
 public class CacheUpdateServiceImpl implements CacheUpdateService {
 
 	protected static Logger LOG = Logger.getLogger(CacheUpdateServiceImpl.class);
-	
-	
+
 	@CacheEvict(value="referenceData", allEntries=true)
 	public void clearReferenceDataCache() {
 		LOG.warn("Reference data cache was flushed");

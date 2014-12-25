@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Implementation-Vendor: Podcastpedia
 Implementation-Title: Podcastpedia - knowledge to go
-Implementation-Version: 0.9.4
+Implementation-Version: 0.9.5-SNAPSHOT
 Implementation-Vendor-Id: org.podcastpedia.web
 Specification-Vendor: Podcastpedia
 Build-Jdk: 1.7.0_45
 Built-By: ama
 Specification-Title: Podcastpedia - knowledge to go
 Created-By: Apache Maven 3.0.4
-Specification-Version: 0.9.4
+Specification-Version: 0.9.5-SNAPSHOT
 

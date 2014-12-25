@@ -90,6 +90,9 @@ public interface EpisodeDao {
 	 */
 	public List<Episode> getEpisodesFromArchive(Map<String, Object> params);
 
+	public List<Episode> getLatestEpisodes(Map<String, Object> params);
+	
+	
 	/**
 	 * Returns surrounding episodes by publication date
 	 * 

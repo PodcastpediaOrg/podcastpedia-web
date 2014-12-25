@@ -163,12 +163,15 @@
 			</div>																																				        
 		</div>				
 	</c:forEach> 
-	<p id="archive_all_episodes">
-		<c:url var="allEpisodesUrl" value="/podcasts/${podcast.podcastId}/${podcast.titleInUrl}/episodes/archive/pages/1"/>
-		<a href="${allEpisodesUrl}" ><spring:message code="pod_details.archive" text="Archive - all episodes"/></a>	
-	</p>	
-	<div class="clear"></div>						
+	<input type="hidden" name="offset" id="offset-data-id" value="5"/>					
  </div>
+ 
+<button type="button" id="more-episodes" style="display: block;width:100%;border-radius:5px;height:30px;font-family:arial,sans-serif; font-size:1.5em;color=#4f6a87" class="shadowy"><strong><spring:message code="global.more" text="More"/> > </strong></button>
+<p id="archive_all_episodes">
+	<c:url var="allEpisodesUrl" value="/podcasts/${podcast.podcastId}/${podcast.titleInUrl}/episodes/archive/pages/1"/>
+	<a href="${allEpisodesUrl}" ><spring:message code="pod_details.archive" text="Archive - all episodes"/></a>	
+</p>	
+<div class="clear"></div>	
  	
 <p id="podcast_copyright" class="bg_color common_radius shadowy">
 	<b>Copyright:</b> ${podcast.copyright}. <br/>
@@ -180,11 +183,9 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
-<!-- include loading dynamic player page -->
-<%@ include file="/WEB-INF/jsp/common/load_player_dynamically.jsp" %>
 <!-- dynamic social share -->
-<%@ include file="/WEB-INF/jsp/common/social_share_dynamically.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/email_subscription_javascript.jsp" %>
+<script src="<c:url value="/static/js/podcast/main.js" />"></script>
 
 <!-- jquery dialogs -->
 <div id="subscribe-form" title="Podcast subscription">
