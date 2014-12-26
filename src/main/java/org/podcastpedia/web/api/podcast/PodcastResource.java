@@ -49,12 +49,12 @@ public class PodcastResource {
 	}
 	
 	@GET
-	@Path("{podcastId}/episodes/latest-episodes")
+	@Path("{podcastId}/episodes")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Episode> getLatestEpisodes(@PathParam("podcastId") Integer podcastId, @QueryParam("offset") Integer offset, @QueryParam("limit") Integer limit) throws BusinessException {
-		List<Episode> latestEpisodesPaginated = episodeService.getLatestEpisodes(podcastId, offset, limit);
+	public List<Episode> getLatestEpisodes(@PathParam("podcastId") Integer podcastId, @QueryParam("offset") Integer offset, @QueryParam("count") Integer count) throws BusinessException {
+		List<Episode> podcastEpisodes = episodeService.getEpisodesForPodcast(podcastId, offset, count);
 		
-		return latestEpisodesPaginated;
+		return podcastEpisodes;
 	}	
 	
 	@GET

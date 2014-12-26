@@ -49,7 +49,7 @@ public interface EpisodeService {
 	 * @return
 	 * @throws BusinessException
 	 */
-	public List<Episode> getLatestEpisodes(Integer podcastId,
+	public List<Episode> getEpisodesForPodcast(Integer podcastId,
 			Integer offset, Integer limit) throws BusinessException;	
 
 	/**

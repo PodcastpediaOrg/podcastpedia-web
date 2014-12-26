@@ -97,7 +97,7 @@ public class EpisodeController {
 		model.addAttribute("episode", episodeDetails.getEpisode());
 
 		// set other episodes to be displayed
-		List<Episode> otherEpisodes = episodeDetails.getSurroundingEpisodes();
+		List<Episode> otherEpisodes = episodeDetails.getLastEpisodes();
 		if (otherEpisodes != null) {
 			model.addAttribute("otherEpisodes", otherEpisodes);
 			model.addAttribute("otherEpisodesSize",

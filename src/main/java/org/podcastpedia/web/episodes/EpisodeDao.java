@@ -56,14 +56,6 @@ public interface EpisodeDao {
 	 */
 	public Episode getLastEpisodeForPodcast(Integer podcastId);
 
-	/**
-	 * Returns episodes "surrounding" the given episode
-	 * 
-	 * @param params
-	 * @return
-	 */
-	public List<Episode> getSurroundingEpisodesByEpisodeId(
-			Map<String, Object> params);
 
 	/**
 	 * Returns the params.limit number of episodes order by publication_date
@@ -73,7 +65,19 @@ public interface EpisodeDao {
 	 * @return
 	 */
 	public List<Episode> getLastEpisodesForPodcast(Map<String, Object> params);
-	public List<Episode> getLastEpisodesForPodcastIdentifier(Map<String, Object> params);	
+	public List<Episode> getLastEpisodesForPodcastIdentifier(Map<String, Object> params);
+
+	/**
+	 * Returns the episodes for podcast, by default ordered by publication date desceding, as this is the natural
+	 * order in the context of podcasts. 
+	 * 
+	 * As filtering parameters present in the input map, we can have offset (the point where to start looking)
+	 * and limit (how many episodes should be retrieved)
+	 * 
+	 * @param params
+	 * @return
+	 */
+	public List<Episode> getEpisodesForPodcast(Map<String, Object> params);		
 
 	/**
 	 * Inserts posted comment in the database
@@ -91,16 +95,6 @@ public interface EpisodeDao {
 	public List<Episode> getEpisodesFromArchive(Map<String, Object> params);
 
 	public List<Episode> getLatestEpisodes(Map<String, Object> params);
-	
-	
-	/**
-	 * Returns surrounding episodes by publication date
-	 * 
-	 * @param paramsByDate
-	 * @return
-	 */
-	public List<Episode> getSurroundingEpisodesByPublicationDate(
-			Map<String, Object> paramsByDate);
 
 	public Episode getPodcastDataForUnexistantEpisode(Integer podcastId);
 	

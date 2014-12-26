@@ -18,6 +18,9 @@
 		<result column="episode_title_in_url" property="titleInUrl" />
 	    <result column="episode_rating" property="rating" />
 	    <result column="episode_number_ratings" property="numberRatings" />
+		<result column="is_new" property="isNew" />
+   	    <result column="length" property="length"/>   
+   	    <result column="enclosure_type" property="enclosureType"/>	    
 		<result column="podcast_title_in_url" property="podcast.titleInUrl" />
 		<result column="podcast_url" property="podcast.url" />
 		<result column="podcast_image_url" property="podcast.urlOfImageToDisplay" />
@@ -25,12 +28,44 @@
 		<result column="podcast_link" property="podcast.link" />			
 		<result column="social_fb_page" property="podcast.fbPage" />
 		<result column="social_twitter_page" property="podcast.twitterPage" />
-		<result column="social_gplus_page" property="podcast.gplusPage" />					
-		<result column="is_new" property="isNew" />
-   	    <result column="length" property="length"/>   
-   	    <result column="enclosure_type" property="enclosureType"/>  
+		<result column="social_gplus_page" property="podcast.gplusPage" />					  
    	    <result column="podcast_identifier" property="podcast.identifier"/>  		
-	</resultMap>	
+	</resultMap>
+	
+  <select id="getEpisodesForPodcast" parameterType="java.util.Map" resultMap="episodeResultMap">
+    SELECT
+		e.podcast_id,
+		e.episode_id,
+        e.description as episode_description,
+        e.link as episode_link,
+        e.media_url as episode_media_url,
+        e.media_type as episode_media_type, 
+      	e.title as episode_title,
+      	e.publication_date as episode_pub_date,	
+      	e.title_in_url as episode_title_in_url,
+      	e.is_new,
+      	p.title_in_url as podcast_title_in_url
+   	FROM episodes e, podcasts p 	
+    WHERE
+      e.podcast_id = #{podcastId}
+	  AND
+	  e.podcast_id=p.podcast_id
+      AND 
+      e.availability = 200
+      ORDER BY 
+      e.publication_date DESC 
+      <if test="count != null">
+		<choose>
+			<when test="offset != null">
+				LIMIT #{offset}, #{count}	
+			</when>
+			<otherwise>
+				LIMIT #{count}
+			</otherwise>
+		</choose>            	
+      </if>      
+  </select> 
+  		
   <select id="getLastEpisodeForPodcast" parameterType="Integer" resultMap="episodeResultMap" useCache="true">
     SELECT
 		e.podcast_id,
@@ -67,9 +102,7 @@
       	e.title as episode_title,
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating      	
+      	e.is_new   	
    	FROM 
    		episodes e 	
     WHERE
@@ -117,10 +150,6 @@
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{podcastId} and episode_id=#{episodeId}) as episode_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{podcastId} and episode_id=#{episodeId}) as episode_number_ratings,
       	p.title_in_url as podcast_title_in_url,
       	p.url as podcast_url,
       	p.podcast_image_url,
@@ -180,9 +209,7 @@
         e.media_url as episode_media_url,
         e.media_type as episode_media_type, 
       	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating,      	
+      	e.publication_date as episode_pub_date, 	
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
       	p.title_in_url as podcast_title_in_url
@@ -207,9 +234,7 @@
         e.media_url as episode_media_url,
         e.media_type as episode_media_type, 
       	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating,      	
+      	e.publication_date as episode_pub_date,	
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
       	p.title_in_url as podcast_title_in_url
@@ -234,9 +259,7 @@
         e.media_url as episode_media_url,
         e.media_type as episode_media_type, 
       	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating,      	
+      	e.publication_date as episode_pub_date,    	
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
       	p.title_in_url as podcast_title_in_url
@@ -250,139 +273,6 @@
       ORDER BY 
       e.publication_date DESC 
   </select>    
-   
-  <select id="getSurroundingEpisodesByEpisodeId" parameterType="java.util.Map" resultMap="episodeResultMap">
-	  SELECT A.* FROM (
-		    (SELECT
-				e.podcast_id,
-				e.episode_id,
-		        e.description as episode_description,
-		        e.link as episode_link,
-		        e.media_url as episode_media_url,
-		        e.media_type as episode_media_type, 
-		      	e.title as episode_title,
-		      	e.publication_date as episode_pub_date,
-		      	e.title_in_url as episode_title_in_url,
-		      	e.is_new,		      	
-				(select sum(rating) / count(rating) from ratings
-				 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating, 		      	
-		      	p.title_in_url as podcast_title_in_url,
-		      	p.url as podcast_url     	
-		   	FROM episodes e, podcasts p 	
-		    WHERE
-		      e.podcast_id = #{podcastId}
-		      AND
-		      e.episode_id &lt;&gt; #{episodeId} 
-			  AND
-			  e.podcast_id=p.podcast_id
-			  AND
-			  e.availability = 200
-			  AND
-			  e.episode_id &lt; #{episodeId}
-			  ORDER BY e.episode_id DESC 
-			  limit 5
-			  )
-			  UNION ALL
-			  (
-			    SELECT
-					e.podcast_id,
-					e.episode_id,
-			        e.description as episode_description,
-			        e.link as episode_link,
-			        e.media_url as episode_media_url,
-			        e.media_type as episode_media_type, 
-			      	e.title as episode_title,
-			      	e.publication_date as episode_pub_date,
-			      	e.title_in_url as episode_title_in_url,
-			      	e.is_new,			      	
-					(select sum(rating) / count(rating) from ratings
-					 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating,					  			      	
-			      	p.title_in_url as podcast_title_in_url,
-			      	p.url as podcast_url     	
-			   	FROM episodes e, podcasts p 	
-			    WHERE
-			      e.podcast_id = #{podcastId}
-			      AND
-			      e.episode_id &lt;&gt; #{episodeId} 
-				  AND
-				  e.podcast_id=p.podcast_id
-				  AND
-				  e.availability = 200
-				  AND
-				  e.episode_id &gt; #{episodeId}
-				  ORDER BY e.episode_id ASC
-				  limit 5	  
-			  )
-		  ) as A
-		  limit 5
-
-  </select>   
-  	
-  <select id="getSurroundingEpisodesByPublicationDate" parameterType="java.util.Map" resultMap="episodeResultMap">
-	  SELECT A.* FROM ( 
-		    (SELECT
-				e.podcast_id,
-				e.episode_id,
-		        e.description as episode_description,
-		        e.link as episode_link,
-		        e.media_url as episode_media_url,
-		        e.media_type as episode_media_type, 
-		      	e.title as episode_title,
-		      	e.publication_date as episode_pub_date,
-		      	e.title_in_url as episode_title_in_url,
-		      	e.is_new,
-				(select sum(rating) / count(rating) from ratings
-				 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating, 		      	
-		      	p.title_in_url as podcast_title_in_url,
-		      	p.url as podcast_url     	
-		   	FROM episodes e, podcasts p 	
-		    WHERE
-		      e.podcast_id = #{podcastId}
-		      AND
-		      e.episode_id &lt;&gt; #{episodeId} 
-			  AND
-			  e.podcast_id=p.podcast_id
-			  AND
-			  e.availability = 200
-			  AND
-			  e.publication_date &lt;= #{publicationDate}
-			  ORDER BY e.publication_date DESC 			  
-			  limit 5
-			  )
-			  UNION ALL
-			  (
-			    SELECT
-					e.podcast_id,
-					e.episode_id,
-			        e.description as episode_description,
-			        e.link as episode_link,
-			        e.media_url as episode_media_url,
-			        e.media_type as episode_media_type, 
-			      	e.title as episode_title,
-			      	e.publication_date as episode_pub_date,			      	
-			      	e.title_in_url as episode_title_in_url,
-			      	e.is_new,
-					(select sum(rating) / count(rating) from ratings
-					 where podcast_id = #{podcastId} and episode_id=e.episode_id) as episode_rating, 			      	
-			      	p.title_in_url as podcast_title_in_url,
-			      	p.url as podcast_url     	
-			   	FROM episodes e, podcasts p 	
-			    WHERE
-			      e.podcast_id = #{podcastId}
-			      AND
-			      e.episode_id &lt;&gt; #{episodeId} 
-				  AND
-				  e.podcast_id=p.podcast_id
-				  AND
-				  e.availability = 200
-				  AND
-				  e.publication_date &gt;= #{publicationDate}
-				  ORDER BY e.publication_date ASC 				  
-				  limit 5	  
-			  )
-		  ) as A
- 	  		LIMIT 5 		  
-  </select>
   
 	<select id="getPodcastDataForUnexistantEpisode" parameterType="java.lang.Integer" resultMap="episodeResultMap">
 	SELECT

@@ -74,23 +74,14 @@ public class EpisodeServiceImpl implements EpisodeService {
 
 			throw bex;
 		}
+		
+		Integer nrEpLimit = Integer.valueOf(configService.getValue("NR_LAST_EPISODES_SHOWN"));
+		Map<String, Object> getLastEpisodesParams = new HashMap<String, Object>();
+		getLastEpisodesParams.put("podcastId", podcastId);
+		getLastEpisodesParams.put("limit", nrEpLimit);  
+		List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcast(getLastEpisodesParams);   
 
-		List<Episode> surroundingEpisodes = null;
-		if (episode.getPublicationDate() != null) {
-			Map<String, Object> paramsByDate = new HashMap<String, Object>();
-			paramsByDate.put("podcastId", podcastId);
-			paramsByDate.put("episodeId", episodeId);
-			paramsByDate.put("publicationDate", episode.getPublicationDate());
-			surroundingEpisodes = episodeDao
-					.getSurroundingEpisodesByPublicationDate(paramsByDate);
-		} else {
-			// there are some podcasts /episodes that donÄt have publication
-			// date or the api cannot set it correctly
-			surroundingEpisodes = episodeDao
-					.getSurroundingEpisodesByEpisodeId(params);
-		}
-
-		response.setSurroundingEpisodes(surroundingEpisodes);
+		response.setLastEpisodes(lastEpisodes);
 
 		return response;
 	}
@@ -165,16 +156,15 @@ public class EpisodeServiceImpl implements EpisodeService {
 	}
 
 	@Override
-	public List<Episode> getLatestEpisodes(Integer podcastId, Integer offset,
-			Integer limit) throws BusinessException {
-		// default is 20 if you want to get rid of the cache for config data
+	public List<Episode> getEpisodesForPodcast(Integer podcastId, Integer offset,
+			Integer count) throws BusinessException {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("podcastId", podcastId);
 		params.put("offset", offset );
-		params.put("limit", limit);
+		params.put("count", count);
 		
-		List<Episode> response = episodeDao.getLatestEpisodes(params);
+		List<Episode> response = episodeDao.getEpisodesForPodcast(params);
 		return response;
 	}
 }

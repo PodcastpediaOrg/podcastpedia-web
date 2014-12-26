@@ -7,12 +7,12 @@ $(function (){
 		
 		var offsetDataId=$('#offset-data-id');
 		var offset=parseInt(offsetDataId.val());
-		var limit = 5; 
+		var count = 5; 
 		
 		$.ajax({
 			headers: {"Accept":"application/json"},
 			type: 'GET',
-			url: '/api/podcasts/'+ podcastId + '/episodes/latest-episodes?offset='+ offset + '&limit=' + limit,
+			url: '/api/podcasts/'+ podcastId + '/episodes?offset='+ offset + '&count=' + count,
 			success: function(episodes){
 				if(episodes.length == 0){
 					moreEpisodesBtn.attr("disabled","disabled");
@@ -43,7 +43,8 @@ $(function (){
 			} else {
 				episodeDiv += "<div class='icon-video-episode'></div>";
 			}
-			episodeDiv += "<a href='#' class='item_title'>" + episode.title + '</a>';
+			var episodeUrl='http://www.podcastpedia.org/podcasts/' + episode.podcastId + '/' + episode.podcast.titleInUrl + '/episodes/' + episode.episodeId + '/' + episode.titleInUrl;
+			episodeDiv += '<a href='+ episodeUrl +' class="item_title">' + episode.title + '</a>';
 			
 			episodeDiv +='<div class="pub_date">';
 			episodeDiv += episode.publicationDate;
@@ -56,13 +57,13 @@ $(function (){
 			episodeDiv +='</div>';					
 			episodeDiv +='<hr>';
 			episodeDiv +='<div class="ep_desc">';
-			episodeDiv +='<a href="#" class="item_desc">';
+			episodeDiv += '<a href='+ episodeUrl +' class="item_desc">';
 			episodeDiv += episode.description.substring(0,280);
 			episodeDiv +='</a>';
 			episodeDiv +='</div>';
 			  		
 			episodeDiv +='<div class="ep_desc_bigger">';
-			episodeDiv +='<a href="#" class="item_desc">';
+			episodeDiv +='<a href='+ episodeUrl +' class="item_desc">';
 			episodeDiv += episode.description.substring(0,600);
 			episodeDiv +='</a>';
 			episodeDiv +='</div>';
@@ -89,7 +90,7 @@ $(function (){
 			episodeDiv+= '<a class="icon-download-ep btn-share" href="'+ episode.mediaUrl +'" target="_blank">';
 			episodeDiv+= 'download';
 			episodeDiv +='</a>';
-			episodeDiv +='<span class="item_url">http://www.podcastpedia.org/podcasts/' + episode.podcastId + '/' + episode.podcast.titleInUrl + '/episodes/' + episode.episodeId + '/' + episode.titleInUrl;
+			episodeDiv +='<span class="item_url">' + episodeUrl + '</span>';
 			episodeDiv +='</div>';	
 			
 			return episodeDiv;

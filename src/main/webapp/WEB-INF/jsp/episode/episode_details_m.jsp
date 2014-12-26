@@ -101,7 +101,7 @@
 </div>
 
 <div class="results_list">
-	<h3><spring:message code="ep_details.other_ep" text="Other episodes: "/></h3>	
+ 	<h3><spring:message code="pod_details.recent_episodes" text="Recent episodes: "/></h3>
 	<c:forEach items="${otherEpisodes}" var="episodeIterator" varStatus="loop">	
 	  	<div class="bg_color shadowy item_wrapper">	
 	    	<div class="title-and-pub-date">
@@ -172,9 +172,12 @@
 				<span class="item_url">http://www.podcastpedia.org/podcasts/${episode.podcastId}/${episode.podcast.titleInUrl}/episodes/${episodeIterator.episodeId}/${episodeIterator.titleInUrl}</span>								
 			</div>																																				        
 		</div>				
-	</c:forEach>							
+	</c:forEach>
+	<input type="hidden" name="offset" id="offset-data-id" value="5"/>
+	<input type="hidden" name="podcastId" id="sub_podcastId" value="${episode.podcastId}"/>							
 </div>
 
+<button type="button" id="more-episodes" style="display: block;width:100%;border-radius:5px;height:30px;font-family:arial,sans-serif; font-size:1.5em;color=#4f6a87" class="shadowy"><strong><spring:message code="global.more" text="More"/> > </strong></button>
 <p id="archive_all_episodes">
 	<c:url var="allEpisodesUrl" value="/podcasts/${episode.podcastId}/${episode.titleInUrl}/episodes/archive/pages/1"/>
 	<a href="${allEpisodesUrl}"> <spring:message code="pod_details.archive" text="Archive - all episodes"/> </a>	
@@ -184,10 +187,7 @@
 
 <!-- javascript libraries required -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<!-- include loading dynamic player page -->
-<%@ include file="/WEB-INF/jsp/common/load_player_dynamically.jsp" %>
-<!-- dynamic social share -->
-<%@ include file="/WEB-INF/jsp/common/social_share_dynamically.jsp" %>
+<script src="<c:url value="/static/js/podcast/main.js" />"></script>
 
 <div id="disqus_comments" class="shadowy">
     <div id="disqus_thread"></div>
