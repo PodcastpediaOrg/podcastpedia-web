@@ -98,6 +98,10 @@
     	p.podcast_id,
     	p.url,
     	p.identifier,
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
+		(select count(rating)  from ratings
+				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -153,6 +157,10 @@
     	p.podcast_id,
     	p.url,
     	p.identifier,
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
+		(select count(rating)  from ratings
+				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -183,7 +191,9 @@
       	e.episode_id,
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
-      	e.is_new,  
+      	e.is_new,
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=e.episode_id) as episode_rating,   
       	t.tag_id,
         t.name as tag_name
    	FROM podcasts p
@@ -207,6 +217,10 @@
     	p.podcast_id,
     	p.url,
     	p.identifier, 
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
+		(select count(rating)  from ratings
+				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -246,6 +260,10 @@
     	p.podcast_id,
     	p.url,
     	p.identifier, 
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
+		(select count(rating)  from ratings
+				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -285,6 +303,10 @@
     	p.podcast_id,
     	p.url,
     	p.identifier, 
+		(select sum(rating) / count(rating) from ratings
+		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
+		(select count(rating)  from ratings
+				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
