@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,9 +30,9 @@ public class EpisodeDaoTest {
 		LOG.debug(" \n\n------ executing PodcastDaoTest.testGetPodcastByUrl -------");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("identifier", "quarks");
-		params.put("limit", 10);		
-		List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcastIdentifier(params);
+		params.put("name", "quarks");
+		params.put("count", 10);		
+		List<Episode> lastEpisodes = episodeDao.getEpisodesForPodcastName(params);
 		
 		Assert.assertTrue(lastEpisodes.size() > 0);
 	}	

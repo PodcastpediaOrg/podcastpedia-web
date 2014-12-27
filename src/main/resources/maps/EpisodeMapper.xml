@@ -32,7 +32,41 @@
    	    <result column="podcast_identifier" property="podcast.identifier"/>  		
 	</resultMap>
 	
-  <select id="getEpisodesForPodcast" parameterType="java.util.Map" resultMap="episodeResultMap">
+	<select id="getEpisodeById" parameterType="java.util.Map" resultMap="episodeResultMap">
+	  SELECT
+		e.podcast_id,
+		e.episode_id,
+	    e.description as episode_description,
+	    e.link as episode_link,
+	    e.media_url as episode_media_url,
+	    e.media_type as episode_media_type, 
+	    e.title as episode_title,
+	    e.publication_date as episode_pub_date,
+	    e.title_in_url as episode_title_in_url,
+	    e.is_new,
+	    p.title_in_url as podcast_title_in_url,
+	    p.url as podcast_url,
+	    p.podcast_image_url,
+	    p.title as podcast_title,
+	    p.identifier as podcast_identifier,
+	    p.podcast_link as podcast_link,
+	  	p.social_fb_page,
+	  	p.social_twitter_page,
+	  	p.social_gplus_page        		
+	  FROM episodes e, podcasts p 	
+	  WHERE
+		e.podcast_id = #{podcastId}
+	  AND
+		e.episode_id = #{episodeId} 
+	  AND
+		e.podcast_id=p.podcast_id
+	  AND
+		e.availability = 200
+	  AND
+	    p.availability = 200
+	</select>	
+	
+  <select id="getEpisodesForPodcastId" parameterType="java.util.Map" resultMap="episodeResultMap">
     SELECT
 		e.podcast_id,
 		e.episode_id,
@@ -44,7 +78,15 @@
       	e.publication_date as episode_pub_date,	
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
-      	p.title_in_url as podcast_title_in_url
+	    p.title_in_url as podcast_title_in_url,
+	    p.url as podcast_url,
+	    p.podcast_image_url,
+	    p.title as podcast_title,
+	    p.identifier as podcast_identifier,
+	    p.podcast_link as podcast_link,
+	  	p.social_fb_page,
+	  	p.social_twitter_page,
+	  	p.social_gplus_page   
    	FROM episodes e, podcasts p 	
     WHERE
       e.podcast_id = #{podcastId}
@@ -65,8 +107,8 @@
 		</choose>            	
       </if>      
   </select> 
-  		
-  <select id="getLastEpisodeForPodcast" parameterType="Integer" resultMap="episodeResultMap" useCache="true">
+
+  <select id="getEpisodesForPodcastName" parameterType="map" resultMap="episodeResultMap">
     SELECT
 		e.podcast_id,
 		e.episode_id,
@@ -75,225 +117,38 @@
         e.media_url as episode_media_url,
         e.media_type as episode_media_type, 
       	e.title as episode_title,
-      	e.episode_id,
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
-      	e.length,
-      	e.enclosure_type
-   	FROM episodes e 	
-    WHERE
-      e.podcast_id = #{value}
-      AND
-      e.availability = 200 
-    ORDER BY
-      e.publication_date DESC
-    LIMIT 1
-  </select>  
-  
-  <select id="getLastEpisodesForPodcast" parameterType="Integer" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new   	
-   	FROM 
-   		episodes e 	
-    WHERE
-    	e.podcast_id = #{podcastId}
-    AND
-    	e.availability = 200 
-    ORDER BY
-    	e.publication_date DESC
-    LIMIT #{limit}
-  </select>
-  <select id="getLastEpisodesForPodcastIdentifier" parameterType="map" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new    	
+	    p.title_in_url as podcast_title_in_url,
+	    p.url as podcast_url,
+	    p.podcast_image_url,
+	    p.title as podcast_title,
+	    p.identifier as podcast_identifier,
+	    p.podcast_link as podcast_link,
+	  	p.social_fb_page,
+	  	p.social_twitter_page,
+	  	p.social_gplus_page         	   	
    	FROM 
    		episodes e, podcasts p 	
     WHERE
     	e.podcast_id = p.podcast_id    	
     AND 
-    	p.identifier = #{identifier}
+    	p.identifier = #{name}
     AND
     	e.availability = 200 
     ORDER BY
     	e.publication_date DESC
-    LIMIT #{limit}
+      <if test="count != null">
+		<choose>
+			<when test="offset != null">
+				LIMIT #{offset}, #{count}	
+			</when>
+			<otherwise>
+				LIMIT #{count}
+			</otherwise>
+		</choose>            	
+      </if>  
   </select>       
-   
-  <select id="getEpisodeById" parameterType="java.util.Map" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-      	p.title_in_url as podcast_title_in_url,
-      	p.url as podcast_url,
-      	p.podcast_image_url,
-      	p.title as podcast_title,
-      	p.identifier as podcast_identifier,
-      	p.podcast_link as podcast_link,
-    	p.social_fb_page,
-    	p.social_twitter_page,
-    	p.social_gplus_page        		
-   	FROM episodes e, podcasts p 	
-    WHERE
-      e.podcast_id = #{podcastId}
-      AND
-      e.episode_id = #{episodeId} 
-	  AND
-	  e.podcast_id=p.podcast_id
-	  AND
-	  e.availability = 200
-	  AND
-	  p.availability = 200
-  </select>  
   
-  <select id="getEpisodeFromArchive" parameterType="java.util.Map" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-      	p.title_in_url as podcast_title_in_url,
-      	p.url as podcast_url,
-      	p.podcast_image_url,
-      	p.title as podcast_title	
-   	FROM 
-   		episodes e, podcasts p 	
-    WHERE
-      e.podcast_id = #{podcastId}
-      AND
-      e.episode_id = #{episodeId} 
-	  AND
-	  e.podcast_id=p.podcast_id
-	  AND
-	  p.availability = 200
-  </select>   
-    
-  <select id="getEpisodesFromArchive" parameterType="java.util.Map" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date, 	
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-      	p.title_in_url as podcast_title_in_url
-   	FROM episodes e, podcasts p 	
-    WHERE
-      e.podcast_id = #{podcastId}
-	  AND
-	  e.podcast_id=p.podcast_id
-      AND 
-      e.availability = 200
-      ORDER BY 
-      e.publication_date DESC 
-      limit #{startingFrom}, #{numberOfEpisodesPerPage}
-  </select>  
-
-  <select id="getLatestEpisodes" parameterType="java.util.Map" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,	
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-      	p.title_in_url as podcast_title_in_url
-   	FROM episodes e, podcasts p 	
-    WHERE
-      e.podcast_id = #{podcastId}
-	  AND
-	  e.podcast_id=p.podcast_id
-      AND 
-      e.availability = 200
-      ORDER BY 
-      e.publication_date DESC 
-      limit #{offset}, #{limit}
-  </select> 
-    
-  <select id="getAllEpisodesForPodcast" parameterType="Integer" resultMap="episodeResultMap">
-    SELECT
-		e.podcast_id,
-		e.episode_id,
-        e.description as episode_description,
-        e.link as episode_link,
-        e.media_url as episode_media_url,
-        e.media_type as episode_media_type, 
-      	e.title as episode_title,
-      	e.publication_date as episode_pub_date,    	
-      	e.title_in_url as episode_title_in_url,
-      	e.is_new,
-      	p.title_in_url as podcast_title_in_url
-   	FROM episodes e, podcasts p 	
-    WHERE
-      e.podcast_id = #{podcastId}
-	  AND
-	  e.podcast_id=p.podcast_id
-      AND 
-      e.availability = 200
-      ORDER BY 
-      e.publication_date DESC 
-  </select>    
-  
-	<select id="getPodcastDataForUnexistantEpisode" parameterType="java.lang.Integer" resultMap="episodeResultMap">
-	SELECT
-		p.title as podcast_title,
-		p.podcast_id,
-		p.title_in_url as podcast_title_in_url      		
-	FROM podcasts p 	
-	WHERE
-		p.podcast_id = #{podcastId}
-	AND
-		p.availability = 200
-	</select>  
-    		
-	<!-- update RATINGs  -->		  
-	  <update id="updateEpisodeRating" parameterType="java.util.Map">
-		UPDATE episodes SET
-		  rating = #{newRating},
-		  number_ratings = #{newNumberOfRatings}
-		WHERE
-		  podcast_id = #{podcastId}
-		  AND
-		  episode_id = #{episodeId}
-	  </update>		  
 </mapper>

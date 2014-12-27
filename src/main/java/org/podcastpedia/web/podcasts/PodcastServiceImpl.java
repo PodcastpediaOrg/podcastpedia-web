@@ -57,9 +57,9 @@ public class PodcastServiceImpl implements PodcastService {
 		    response = podcastDao.getPodcastById(podcastId);
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("podcastId", podcastId);
-			params.put("limit", nrEpLimit);  
-			List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcast(params);   
-			response.setEpisodes(lastEpisodes);
+			params.put("count", nrEpLimit);		
+			List<Episode> lastEpisodes = episodeDao.getEpisodesForPodcastId(params);			
+			response.setEpisodes(lastEpisodes);	    
 	   }
 
 	   if(response == null){
@@ -75,35 +75,35 @@ public class PodcastServiceImpl implements PodcastService {
    /** ==============================  implementation methods start from here on ==============================   
  * @throws BusinessException */
    @Cacheable(value="podcasts")
-   public Podcast getPodcastForIdentifier(String identifier) throws BusinessException{
+   public Podcast getPodcastForIdentifier(String name) throws BusinessException{
 	   
 	   LOG.debug("executing getPodcastById");
 	   Podcast response = null;
 
-	   Integer numberEpisodes = this.getNumberEpisodesForPodcastIdentifier(identifier);
+	   Integer numberEpisodes = this.getNumberEpisodesForPodcastIdentifier(name);
 
 	   if(numberEpisodes == 0) {
 		   BusinessException ex = new BusinessException(ErrorCodeType.PODCAST_NOT_FOUND, "Podcast was not found in the database");
-		   LOG.error("Podcast with the identifier id " + identifier + " was requested but has no episodes or availability is not 200 anymore "); 
+		   LOG.error("Podcast with the identifier id " + name + " was requested but has no episodes or availability is not 200 anymore "); 
 		   throw ex;		   
 	   }
 	   
 	   //limit is 20. If more than 20 episodes then we take  separate episodes 
 	   Integer nrEpLimit = Integer.valueOf(configService.getValue("LIMIT_GET_PODCAST_WITH_EPISODES"));
 	   if(numberEpisodes < nrEpLimit){
-		   response = podcastDao.getPodcastWithEpisodesByIdentifier(identifier);
+		   response = podcastDao.getPodcastWithEpisodesByIdentifier(name);
 	   } else {
-		    response = podcastDao.getPodcastByIdentifier(identifier);
+		    response = podcastDao.getPodcastByIdentifier(name);
 			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("identifier", identifier);
-			params.put("limit", nrEpLimit);  
-			List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcastIdentifier(params);   
+			params.put("name", name);
+			params.put("count", nrEpLimit);  
+			List<Episode> lastEpisodes = episodeDao.getEpisodesForPodcastName(params);   
 			response.setEpisodes(lastEpisodes);
 	   }
 
 	   if(response == null){
 		   BusinessException ex = new BusinessException(ErrorCodeType.PODCAST_NOT_FOUND, "Podcast was not found in the database");
-		   LOG.error("Podcast with identifier " + identifier + " was requested but not available anymore"); 
+		   LOG.error("Podcast with identifier " + name + " was requested but not available anymore"); 
 		   throw ex;
 	   }
 		

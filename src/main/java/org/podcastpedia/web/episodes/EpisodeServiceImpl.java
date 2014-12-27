@@ -41,46 +41,21 @@ public class EpisodeServiceImpl implements EpisodeService {
 		Episode episode = episodeDao.getEpisodeById(params);
 		response.setEpisode(episode);
 		if (episode == null) {
-			BusinessException bex = null;
-			episode = episodeDao.getEpisodeFromArchive(params);
-			if (episode != null) {
-				bex = new BusinessException(
-						ErrorCodeType.EPISODE_FOUND_IN_ARCHIVE_ERROR_CODE,
-						"Episode was found in archive, but not available anymore");
-				bex.setEpisode(episode);
-				LOG.error("Episode for podcast id " + podcastId
-						+ " and episode id " + episodeId
-						+ " was requested but not available anymore");				
-				
-			} else {
-				//try at least to get podcast information
-				Episode episodeHolder = episodeDao.getPodcastDataForUnexistantEpisode(podcastId);
-				if(episodeHolder!=null){
-					bex = new BusinessException(
-							ErrorCodeType.EPISODE_NOT_FOUND_BUT_PODCAST_AVAILABLE,
-							"Episode was not found in the database, but podcast still available");					
-					//it means the episode is not in archive, but the podcast is still available
-					bex.setEpisode(episodeHolder);
-				} else {
-					bex = new BusinessException(
-							ErrorCodeType.EPISODE_NOT_FOUND_ERROR_CODE,
-							"Episode was not found in the database");
-					LOG.error("Episode for podcast id " + podcastId
-							+ " and episode id " + episodeId
-							+ " was requested but not available anymore");					
-				}
-				
-			}
-
+			BusinessException bex = new BusinessException(
+					ErrorCodeType.EPISODE_NOT_FOUND_ERROR_CODE,
+					"Episode was not found in the database");
+			LOG.error("Episode for podcast id " + podcastId
+					+ " and episode id " + episodeId
+					+ " was requested but not available anymore");					
 			throw bex;
 		}
 		
-		Integer nrEpLimit = Integer.valueOf(configService.getValue("NR_LAST_EPISODES_SHOWN"));
+		//set recents episodes of the podcast to be shown
+		Integer countLastEpisodes = Integer.valueOf(configService.getValue("NR_LAST_EPISODES_SHOWN"));  
 		Map<String, Object> getLastEpisodesParams = new HashMap<String, Object>();
 		getLastEpisodesParams.put("podcastId", podcastId);
-		getLastEpisodesParams.put("limit", nrEpLimit);  
-		List<Episode> lastEpisodes = episodeDao.getLastEpisodesForPodcast(getLastEpisodesParams);   
-
+		getLastEpisodesParams.put("count", countLastEpisodes);		
+		List<Episode> lastEpisodes = episodeDao.getEpisodesForPodcastId(getLastEpisodesParams);			
 		response.setLastEpisodes(lastEpisodes);
 
 		return response;
@@ -101,8 +76,7 @@ public class EpisodeServiceImpl implements EpisodeService {
 	 * To void conflict with cache from getEpisodeDetails method name was added
 	 */
 	@Cacheable(value = "podcasts", key = "T(java.lang.String).valueOf(#podcastId).concat('-').concat(#currentPage).concat('-').concat(#root.method.name)")
-	// podcastId and episodeId are automatically considered as key for cache
-	// entry
+	// podcastId and episodeId are automatically considered as key for cache entry
 	public List<Episode> getEpisodesFromArchive(Integer podcastId,
 			Integer currentPage, Integer numberEpisodes)
 			throws BusinessException {
@@ -111,7 +85,9 @@ public class EpisodeServiceImpl implements EpisodeService {
 				.getValue("LIMIT_GET_PODCAST_WITH_EPISODES"))) {
 			// it probably still in the cache so that is why we get the episodes
 			// via the podcast
-			response = episodeDao.getAllEpisodesForPodcast(podcastId);
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("podcastId", podcastId);		
+			response = episodeDao.getEpisodesForPodcastId(params);			
 		} else {
 			// we have to get our own episodes
 			response = this.getEpisodesForPage(podcastId, currentPage);
@@ -124,13 +100,12 @@ public class EpisodeServiceImpl implements EpisodeService {
 			Integer currentPage) {
 		// default is 20 if you want to get rid of the cache for config data
 		Integer numberOfEpisodesPerPage = Integer.valueOf(configService
-				.getValue("NUMBER_OF_EPISODES_PER_PAGE_IN_ARCHIVE"));
-
+				.getValue("NUMBER_OF_EPISODES_PER_PAGE_IN_ARCHIVE"));		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("podcastId", podcastId);
-		params.put("startingFrom", (currentPage - 1) * numberOfEpisodesPerPage);
-		params.put("numberOfEpisodesPerPage", numberOfEpisodesPerPage);
-		List<Episode> response = episodeDao.getEpisodesFromArchive(params);
+		params.put("offset", (currentPage - 1) * numberOfEpisodesPerPage);
+		params.put("count", numberOfEpisodesPerPage);		
+		List<Episode> response = episodeDao.getEpisodesForPodcastId(params);			
 		return response;
 	}
 
@@ -164,7 +139,7 @@ public class EpisodeServiceImpl implements EpisodeService {
 		params.put("offset", offset );
 		params.put("count", count);
 		
-		List<Episode> response = episodeDao.getEpisodesForPodcast(params);
+		List<Episode> response = episodeDao.getEpisodesForPodcastId(params);
 		return response;
 	}
 }

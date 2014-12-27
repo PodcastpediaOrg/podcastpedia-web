@@ -30,7 +30,7 @@ public class StartPageServiceImpl implements StartPageService {
    public  List<Podcast> getLastUpdatedPodcasts() {
 	   List<Podcast> newestPodcasts = startPageDao.getLastUpdatedPodcasts(NUMBER_OF_PODCASTS_IN_CHART);
 	   for(Podcast p : newestPodcasts) {
-		   Episode lastEpisode = episodeDao.getLastEpisodeForPodcast(p.getPodcastId());
+		   Episode lastEpisode = getLastEpisodeForPodcast(p);
 		   p.setLastEpisode(lastEpisode);
 	   }
 	   
@@ -41,7 +41,7 @@ public class StartPageServiceImpl implements StartPageService {
    public  List<Podcast> getNewEntries() {
 	   List<Podcast> newEntries = startPageDao.getNewEntries(NUMBER_OF_PODCASTS_IN_CHART);
 	   for(Podcast p : newEntries) {
-		   Episode lastEpisode = episodeDao.getLastEpisodeForPodcast(p.getPodcastId());
+		   Episode lastEpisode = getLastEpisodeForPodcast(p);
 		   p.setLastEpisode(lastEpisode);
 	   }
 	   
@@ -55,7 +55,7 @@ public class StartPageServiceImpl implements StartPageService {
 	   params.put("limit", NUMBER_OF_PODCASTS_IN_CHART);  
 	   List<Podcast> newestPodcasts = startPageDao.getLastUpdatedPodcastsWithLanguage(params);
 	   for(Podcast p : newestPodcasts) {
-		   Episode lastEpisode = episodeDao.getLastEpisodeForPodcast(p.getPodcastId());
+		   Episode lastEpisode = getLastEpisodeForPodcast(p);
 		   p.setLastEpisode(lastEpisode);
 	   }
 	   
@@ -66,7 +66,7 @@ public class StartPageServiceImpl implements StartPageService {
    public List<Podcast> getRecommendedPodcasts() {
 	   List<Podcast> recommendedPodcasts = startPageDao.getRecommendedPodcasts(NUMBER_OF_PODCASTS_IN_CHART);
 	   for(Podcast p : recommendedPodcasts) {
-		   Episode lastEpisode = episodeDao.getLastEpisodeForPodcast(p.getPodcastId());
+		   Episode lastEpisode = getLastEpisodeForPodcast(p);
 		   p.setLastEpisode(lastEpisode);
 	   }
 	   
@@ -80,10 +80,21 @@ public class StartPageServiceImpl implements StartPageService {
 	public List<Podcast> getTopRatedPodcasts(Integer numberOfPodcasts) {
 		List<Podcast> response = startPageDao.getTopRatedPodcasts(numberOfPodcasts);
 		for(Podcast p : response){
-			p.setLastEpisode(episodeDao.getLastEpisodeForPodcast(p.getPodcastId()));
+			p.setLastEpisode(getLastEpisodeForPodcast(p));
 		}
 		
 		return response;
+	}
+
+	private Episode getLastEpisodeForPodcast(Podcast p) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("podcastId", p.getPodcastId());
+		params.put("count", 1);
+		
+		List<Episode> response = episodeDao.getEpisodesForPodcastId(params);		
+		
+		return response.get(0);
 	}
 
 	@Cacheable(value="randomAndTopRatedPodcasts", key="T(java.lang.String).valueOf(#languageCode.code).concat('-').concat(#root.method.name)")
@@ -94,7 +105,7 @@ public class StartPageServiceImpl implements StartPageService {
 		
 		List<Podcast> podcasts= startPageDao.getTopRatedPodcastsWithLanguage(params); 
 		for(Podcast p : podcasts){
-			p.setLastEpisode(episodeDao.getLastEpisodeForPodcast(p.getPodcastId()));
+			p.setLastEpisode(getLastEpisodeForPodcast(p));
 		}
 		
 		return podcasts; 
@@ -105,7 +116,7 @@ public class StartPageServiceImpl implements StartPageService {
 	public List<Podcast> getRandomPodcasts(Integer numberOfPodcasts) {
 		List<Podcast> randomPodcasts = startPageDao.getRandomPodcasts(numberOfPodcasts);
 		for(Podcast p : randomPodcasts){
-			p.setLastEpisode(episodeDao.getLastEpisodeForPodcast(p.getPodcastId()));
+			p.setLastEpisode(getLastEpisodeForPodcast(p));
 		}		
 		return randomPodcasts;
 	}
