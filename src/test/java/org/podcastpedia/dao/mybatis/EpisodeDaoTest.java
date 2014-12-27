@@ -25,35 +25,7 @@ public class EpisodeDaoTest {
 	
 	@Autowired
 	private EpisodeDao episodeDao; 
-	
 		
-	/** Test podcast categories */
-	@Test 
-	public void testGetSurroundingEpisodesByDate() throws Exception {
-		LOG.debug(" \n\n------ executing PodcastDaoTest.testGetPodcastByUrl -------");
-		
-		Map<String, Object> paramsByDate = new HashMap<String, Object>();
-		paramsByDate.put("podcastId", 1);
-		paramsByDate.put("episodeId", 189);	
-		DateTime pubDate = new DateTime(2012, 11, 13, 10, 10);
-		paramsByDate.put("publicationDate", pubDate.toDate());		
-		List<Episode> surroundingEpisodesByPublicationDate = episodeDao.getSurroundingEpisodesByPublicationDate(paramsByDate );
-		
-		Assert.assertTrue(surroundingEpisodesByPublicationDate.size() > 0);
-	}
-
-	@Test 
-	public void testGetSurroundingEpisodesById() throws Exception {
-		LOG.debug(" \n\n------ executing PodcastDaoTest.testGetPodcastByUrl -------");
-		
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("podcastId", 1);
-		params.put("episodeId", 189);		
-		List<Episode> surroundingEpisodesByEpisodeId = episodeDao.getSurroundingEpisodesByEpisodeId(params);
-		
-		Assert.assertTrue(surroundingEpisodesByEpisodeId.size() > 0);
-	}
-	
 	@Test 
 	public void testGetLastEpisodesForPodcastIdentifier() throws Exception {
 		LOG.debug(" \n\n------ executing PodcastDaoTest.testGetPodcastByUrl -------");
