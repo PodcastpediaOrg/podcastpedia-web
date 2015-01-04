@@ -166,7 +166,7 @@
 	<input type="hidden" name="offset" id="offset-data-id" value="5"/>					
  </div>
  
-<button type="button" id="more-episodes" style="display: block;width:100%;border-radius:5px;height:30px;font-family:arial,sans-serif; font-size:1.5em;color=#4f6a87" class="shadowy"><strong><spring:message code="global.more" text="More"/> > </strong></button>
+<button type="button" id="more-episodes" style="display: block;width:100%;border-radius:5px;height:30px;font-family:arial,sans-serif; font-size:1.5em;color=#4f6a87" class="shadowy"><strong><spring:message code="global.more" text="More"/> &gt; </strong></button>
 <p id="archive_all_episodes">
 	<c:url var="allEpisodesUrl" value="/podcasts/${podcast.podcastId}/${podcast.titleInUrl}/episodes/archive/pages/1"/>
 	<a href="${allEpisodesUrl}" ><spring:message code="pod_details.archive" text="Archive - all episodes"/></a>	

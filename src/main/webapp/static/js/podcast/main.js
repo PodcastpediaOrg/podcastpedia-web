@@ -58,13 +58,13 @@ $(function (){
 			episodeDiv +='<hr>';
 			episodeDiv +='<div class="ep_desc">';
 			episodeDiv += '<a href='+ episodeUrl +' class="item_desc">';
-			episodeDiv += episode.description.substring(0,280);
+			if(episode.description != null) episodeDiv += episode.description.substring(0,280);
 			episodeDiv +='</a>';
 			episodeDiv +='</div>';
 			  		
 			episodeDiv +='<div class="ep_desc_bigger">';
 			episodeDiv +='<a href='+ episodeUrl +' class="item_desc">';
-			episodeDiv += episode.description.substring(0,600);
+			if(episode.description != null) episodeDiv += episode.description.substring(0,600);
 			episodeDiv +='</a>';
 			episodeDiv +='</div>';
 			
