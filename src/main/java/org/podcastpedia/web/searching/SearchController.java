@@ -15,6 +15,7 @@ import org.podcastpedia.common.types.OrderByOption;
 import org.podcastpedia.common.types.SearchModeType;
 import org.podcastpedia.web.categories.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,7 @@ public class SearchController {
 
 		binder.registerCustomEditor(MediaType.class, new MediaTypeEditor(
 				MediaType.class));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));/* Converts empty strings into null when a form is submitted */		
 	}
 
 	@RequestMapping(value = "/advanced_search", method = RequestMethod.GET)

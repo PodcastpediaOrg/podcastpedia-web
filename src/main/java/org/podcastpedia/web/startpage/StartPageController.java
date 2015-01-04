@@ -14,6 +14,7 @@ import org.podcastpedia.common.types.OrderByOption;
 import org.podcastpedia.web.categories.CategoryService;
 import org.podcastpedia.web.searching.SearchData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,6 +45,7 @@ public class StartPageController {
 
 		binder.registerCustomEditor(MediaType.class, new MediaTypeEditor(
 				MediaType.class));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));/* Converts empty strings into null when a form is submitted */
 	}
 
 	/**
