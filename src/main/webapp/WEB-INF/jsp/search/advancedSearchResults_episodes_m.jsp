@@ -98,7 +98,14 @@
 		</div>
 	</c:forEach>
 </div>	
+<input type="hidden" name="queryString" id="queryString-data-id" value="${queryString}"/>
+<input type="hidden" name="currentPage" id="currentPage-data-id" value="${advancedSearchResult.currentPage}"/>
+<button type="button" id="more-episodes" style="display: block;width:100%;border-radius:5px;height:30px;font-family:arial,sans-serif; font-size:1.5em;color=#4f6a87" class="shadowy"><strong><spring:message code="global.more" text="More"/> &gt; </strong></button>
 		
+<div>		
+	<a href="#" class="prev-page" id="prev-page"><spring:message code="search.Previous"/></a>
+	<a href="#" class="next-page" id="next-page"><spring:message code="search.Next"/></a>
+</div>		
 <!--  format to display results " 1 PREVIOUS 4 5 6 7 8 NEXT 20 " -->
 <div class="pagination pagination_bottom">
 	<%@ include file="pagination_page_episodes.jsp" %>
@@ -107,7 +114,4 @@
 
 <!-- javascript libraries required -->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<!-- include loading dynamic player page -->
-<%@ include file="/WEB-INF/jsp/common/load_player_dynamically.jsp" %>
-<!-- dynamic social share -->
-<%@ include file="/WEB-INF/jsp/common/social_share_dynamically.jsp" %>
+<script src="<c:url value="/static/js/search/load_new_results.js" />"></script>
