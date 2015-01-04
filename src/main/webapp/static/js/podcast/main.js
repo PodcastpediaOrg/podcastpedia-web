@@ -49,7 +49,7 @@ $(function (){
 			episodeDiv +='<div class="pub_date">';
 			episodeDiv += episode.publicationDate;
 			if(episode.isNew === 1){
-				episodeDiv +='<span class="ep_is_new"><spring:message code="new"/></span>';
+				episodeDiv +='<span class="ep_is_new">&nbsp;new</span>';//TODO see what's up with internationalization
 			}
 			episodeDiv +='</div>';
 				
@@ -88,7 +88,7 @@ $(function (){
 			episodeDiv +='<a href="#' + parseInt(2*(offset+i)) + '" class="icon-play-episode btn-share">Play </a>';
 			episodeDiv +='<a href="#' + parseInt(2*(offset+i)+1) + '" class="icon-share-episode btn-share">Share </a>';
 			episodeDiv+= '<a class="icon-download-ep btn-share" href="'+ episode.mediaUrl +'" target="_blank">';
-			episodeDiv+= 'download';
+			episodeDiv+= 'download&nbsp;';
 			episodeDiv +='</a>';
 			episodeDiv +='<span class="item_url">' + episodeUrl + '</span>';
 			episodeDiv +='</div>';	
