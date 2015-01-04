@@ -19,7 +19,7 @@ public class SearchData implements Serializable {
 	/** id of the search to be identified in the database */
 	private long searchId;
 	
-	/** query text */
+	/** holds query text in natural mode search - what the user typically inputs in the search bar*/
 	private String queryText; 
 	
 	/** query text in natural mode */
@@ -79,6 +79,99 @@ public class SearchData implements Serializable {
 	/** number of results found for the search criteria - transmitted also via the url */
 	private Integer nrOfResults; 
 	
+	public static class Builder {
+		
+		String queryText;
+		String searchTarget;
+		MediaType mediaType;
+		OrderByOption orderBy;
+		String searchMode;
+		Integer numberResultsPerPage;
+		Integer currentPage;
+		List<Integer> categId;
+		String anyOfTheseWords;
+		String allTheseWords;
+		String exactPhrase;
+		String noneOfTheseWords;
+		Integer tagId;
+		
+		public SearchData build(){
+			return new SearchData(this);
+		}
+		
+		public Builder queryText(String val){
+			queryText = val;
+			return this;
+		}		
+
+		public Builder tagId(Integer val){
+			tagId = val;
+			return this;
+		}
+		
+		public Builder exactPhrase(String val){
+			exactPhrase = val;
+			return this;
+		}
+		
+		public Builder noneOfTheseWords(String val){
+			noneOfTheseWords = val;
+			return this;
+		}		
+		
+		public Builder anyOfTheseWords(String val){
+			anyOfTheseWords = val;
+			return this;
+		}
+		
+		public Builder allTheseWords(String val){
+			allTheseWords = val;
+			return this;
+		}
+		
+		public Builder categId(List<Integer> val){
+			categId = val;
+			if(isAllNulls(val)) categId=null;
+			return this;
+		}
+		
+		private boolean isAllNulls(Iterable<?> array) {
+		    for (Object element : array)
+		        if (element != null) return false;
+		    return true;
+		}
+		
+		public Builder searchTarget(String val){
+			searchTarget = val;
+			return this;
+		}
+		
+		public Builder mediaType(MediaType val){
+			mediaType = val;
+			return this;
+		}
+		
+		public Builder orderBy(OrderByOption val){
+			orderBy = val;
+			return this;
+		}
+		
+		public Builder searchMode(String val){
+			searchMode = val;
+			return this;
+		}
+		
+		public Builder numberResultsPerPage(Integer val){
+			numberResultsPerPage = val;
+			return this;
+		}
+		
+		public Builder currentPage(Integer val){
+			currentPage = val;
+			return this;
+		}	
+						
+	}
 	
 	public Integer getNrResultPages() {
 		return nrResultPages;
@@ -106,6 +199,23 @@ public class SearchData implements Serializable {
 	public SearchData(){};
 	
 		
+	public SearchData(Builder builder) {
+		queryText = builder.queryText;
+		searchTarget = builder.searchTarget;
+		mediaType = builder.mediaType;
+		orderBy = builder.orderBy;
+		searchMode = builder.searchMode;
+		numberResultsPerPage = builder.numberResultsPerPage;
+		currentPage = builder.currentPage;
+		tagId = builder.tagId;
+		categId = builder.categId;
+		anyOfTheseWords = builder.anyOfTheseWords;
+		allTheseWords = builder.allTheseWords;
+		noneOfTheseWords = builder.noneOfTheseWords;
+		exactPhrase = builder.exactPhrase;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
