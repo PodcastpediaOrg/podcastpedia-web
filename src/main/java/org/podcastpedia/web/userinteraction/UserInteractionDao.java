@@ -30,31 +30,5 @@ public interface UserInteractionDao {
 	 * @param contactForm
 	 */
 	public void insertContactMessage(ContactForm contactForm);
-
-	/**
-	 * Inserts subscription in the database. MsSql INSERT IGNORE functionality is used. This means 
-	 * if the subscription is present it won't be inserted again. 
-	 * 
-	 * @param subscription
-	 */
-	public Integer insertSubscription(Subscription subscription);
-	
-	/**
-	 * inserts new rating in ratings table - when just for podcast rating.episodeId=1 
-	 * if a rating has been given before then that will be replaced with the last value 
-	 * 
-	 * @param rating
-	 * @return
-	 */
-	public Integer insertRating(Rating rating);
-
-	/**
-	 * returns the podcast/episode rating(if existent) for the given email and podcastId and episodeId (=-1 when rating for podcast)
-	 * 
-	 * @param params
-	 * @return
-	 */
-	public Integer selectRatingForEmail(Map<String, Object> params);
-
 		
 }
