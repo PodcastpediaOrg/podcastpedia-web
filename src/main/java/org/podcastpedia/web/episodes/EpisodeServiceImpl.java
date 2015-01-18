@@ -11,7 +11,6 @@ import org.podcastpedia.common.exception.BusinessException;
 import org.podcastpedia.common.types.ErrorCodeType;
 import org.podcastpedia.common.util.config.ConfigService;
 import org.podcastpedia.web.podcasts.PodcastService;
-import org.podcastpedia.web.userinteraction.UserInteractionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -19,9 +18,6 @@ public class EpisodeServiceImpl implements EpisodeService {
 
 	@Autowired
 	EpisodeDao episodeDao;
-
-	@Autowired
-	private UserInteractionDao userInteractionDao;
 
 	@Autowired
 	private ConfigService configService;

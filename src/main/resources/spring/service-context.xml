@@ -60,5 +60,6 @@
 
 	<bean id="emailSubscriptionService" class="org.podcastpedia.web.userinteraction.emailsubscription.EmailSubscriptionServiceImpl">
 		<property name="emailSubscriptionDao" ref="emailSubscriptionDao"/>
-	</bean> 	   	
+	</bean> 
+	<bean id="userService" class="org.podcastpedia.web.user.UserServiceImpl"/>	   	
 </beans>

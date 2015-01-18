@@ -49,6 +49,7 @@
         <mapper resource="maps/UserInteractionMapper.xml" />
         <mapper resource="maps/StartPageMapper.xml" />
         <mapper resource="maps/TagMapper.xml" />
-        <mapper resource="maps/EmailSubscriptionMapper.xml" />                         
+        <mapper resource="maps/EmailSubscriptionMapper.xml" />
+        <mapper resource="maps/UserMapper.xml" />                           
     </mappers>
 </configuration>

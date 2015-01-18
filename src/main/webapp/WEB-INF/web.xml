@@ -181,6 +181,7 @@
     <filter-mapping>
       <filter-name>springSecurityFilterChain</filter-name>
       <url-pattern>/rest_services/*</url-pattern>
+      <url-pattern>/users/*</url-pattern>
     </filter-mapping>	
 	
 	<!-- set session timeout for 1 minute <url-pattern>/*.atom</url-pattern> -->

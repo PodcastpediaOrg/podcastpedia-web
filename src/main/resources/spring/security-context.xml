@@ -22,10 +22,17 @@
         <security:http-basic />
     </security:http>
 
+    <security:http  auto-config="true">
+        <security:intercept-url pattern="/users/**/" access="ROLE_USER"/>
+        <security:http-basic />
+    </security:http>
+    
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
                 <security:user name="rest_user" password="123rest" authorities="ROLE_REST"/>
+                <security:user name="user" password="user" authorities="ROLE_USER"/>
+                <security:user name="ama" password="ama" authorities="ROLE_USER"/>
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
