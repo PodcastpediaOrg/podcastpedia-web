@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-  - Sample namespace-based configuration
-  -
-  -->
-
 <beans:beans xmlns="http://www.springframework.org/schema/security"
     xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,26 +9,52 @@
                 
         http://www.springframework.org/schema/security 
         http://www.springframework.org/schema/security/spring-security.xsd">
-	
+
+    <!-- DAOs configuration -->
+
 	<!-- Stateless RESTful services use BASIC authentication -->
-    <security:http create-session="stateless" pattern="/rest_services/**">
-        <security:intercept-url pattern="/**" access="ROLE_REST"/>
+    <security:http create-session="stateless" pattern="/rest_services/**" authentication-manager-ref="inMemoryAuthenticationManager">
+        <security:intercept-url pattern="/rest_services/**" access="ROLE_REST"/>
         <security:http-basic />
     </security:http>
 
-    <security:http  auto-config="true">
-        <security:intercept-url pattern="/users/**/" access="ROLE_USER"/>
-        <security:http-basic />
-    </security:http>
+    <security:http  auto-config="false" authentication-manager-ref="jdbcAuthenticationManager">
+    <security:intercept-url pattern="/users/**/*" access="ROLE_USER"/>
+    <security:intercept-url pattern="/login/custom_login" access="ROLE_ANONYMOUS"/>
+    <security:form-login
+            login-page="/login/custom_login"
+            username-parameter="username"
+            password-parameter="password" />
+    <security:logout logout-success-url="/custom_login?logout" />
+    <!-- enable csrf protection -->
+    <csrf/>
+</security:http>
     
-    <security:authentication-manager>
+	<!-- Select users and user_roles from database -->
+	<security:authentication-manager  id="jdbcAuthenticationManager">
+	  <security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query=
+			    "select username, password, enabled from users where username=?"
+			  authorities-by-username-query=
+			    "select username, authority from authorities where username=?" />
+	  </security:authentication-provider>
+	</security:authentication-manager>
+	    
+    <security:authentication-manager id="inMemoryAuthenticationManager">
         <security:authentication-provider>
             <security:user-service>
                 <security:user name="rest_user" password="123rest" authorities="ROLE_REST"/>
-                <security:user name="user" password="user" authorities="ROLE_USER"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager> 
+    
+    <security:authentication-manager id="amainMemoryAuthenticationManager">
+        <security:authentication-provider>
+            <security:user-service>
                 <security:user name="ama" password="ama" authorities="ROLE_USER"/>
             </security:user-service>
         </security:authentication-provider>
-    </security:authentication-manager>
+    </security:authentication-manager>     
 
 </beans:beans>

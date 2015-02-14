@@ -14,10 +14,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("")
 public class UserController {
 	
 	protected static Logger LOG = Logger.getLogger(UserController.class);
@@ -38,28 +40,29 @@ public class UserController {
 		model.put("advancedSearchData", dataForSearchBar);
 	}	
 
-	  @RequestMapping(value="subscriptions", method=RequestMethod.GET)
-	  public String getPodcastSubscriptions(ModelMap model) {
-		  
-		  	LOG.debug("------ Returns the podcasts the user has subscribed to ------");
-		  	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			LOG.debug("got request from " + userDetails.getUsername() + " and password "+ userDetails.getPassword());
-			
-			List<Podcast> subscriptions = userService.getSubscriptions(userDetails.getUsername());
-			model.addAttribute("subscriptions", subscriptions);
-			
-			return "podcast_subscriptions_def";
-	  }	
+    @RequestMapping(value="users/subscriptions", method=RequestMethod.GET)
+    public String getPodcastSubscriptions(ModelMap model) {
+
+        LOG.debug("------ Returns the podcasts the user has subscribed to ------");
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        LOG.debug("got request from " + userDetails.getUsername() + " and password "+ userDetails.getPassword());
+
+        List<Podcast> subscriptions = userService.getSubscriptions(userDetails.getUsername());
+        model.addAttribute("subscriptions", subscriptions);
+
+        return "podcast_subscriptions_def";
+    }
 	  
-	  @RequestMapping(value="subscriptions/latest-episodes", method=RequestMethod.GET)
-	  public String getLatestEpisodesFromPodcastSubscriptions(ModelMap model) {
-		  
-		  	LOG.debug("------ Returns the podcasts the user has subscribed to ------");
-		  	UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			
-			List<Episode> latestEpisodes = userService.getLatestEpisodesFromSubscriptions(userDetails.getUsername());
-			model.addAttribute("latestEpisodes", latestEpisodes);
-			
-			return "latest_episodes_for_podcast_subscriptions_def";
-	  }		  
+    @RequestMapping(value="users/subscriptions/latest-episodes", method=RequestMethod.GET)
+    public String getLatestEpisodesFromPodcastSubscriptions(ModelMap model) {
+
+        LOG.debug("------ Returns the podcasts the user has subscribed to ------");
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<Episode> latestEpisodes = userService.getLatestEpisodesFromSubscriptions(userDetails.getUsername());
+        model.addAttribute("latestEpisodes", latestEpisodes);
+
+        return "latest_episodes_for_podcast_subscriptions_def";
+    }
+
 }

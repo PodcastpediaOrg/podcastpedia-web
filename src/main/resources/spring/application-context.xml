@@ -139,4 +139,9 @@
       <property name="velocityEngine" ref="velocityEngine"/>
    </bean>    
    
+	<bean id="loginController"
+	    class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	    <property name="viewName" value="login_def" />
+	</bean>   
+   
 </beans>
