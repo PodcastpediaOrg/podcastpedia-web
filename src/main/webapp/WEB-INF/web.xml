@@ -9,7 +9,7 @@
 	
 	<display-name>Podcastpedia.org - Knowledge to go </display-name>
 	
-	<description> Europe's podcast directory</description>
+	<description> Open source podcast directory</description>
 
 	<!--
 		Key of the system property that should specify the root directory of this
@@ -180,9 +180,9 @@
 
     <filter-mapping>
       <filter-name>springSecurityFilterChain</filter-name>
-      <url-pattern>/rest_services/*</url-pattern>
       <url-pattern>/users/*</url-pattern>
-    </filter-mapping>	
+      <url-pattern>/rest_services/*</url-pattern>
+    </filter-mapping>
 	
 	<!-- set session timeout for 1 minute <url-pattern>/*.atom</url-pattern> -->
 	<session-config>
