@@ -48,4 +48,32 @@ public class RegexTest {
 		assertTrue(parts[1].equals(" another test"));
 		assertTrue(parts[2].equals("halleluia"));	
 	}
+
+    @Test
+    public void testCommaSeparatedWords(){
+        String correct = "word1, wörter, word2";
+        String correctWithHyphen = "compound-word, wörter, word2";
+        String incorrectWithCommaAtTheEnd = "word1, wörter, word2,";
+        String incorrectWithSeparatedSemicolon = "word1, wörter; word2";
+        String incorrectWithEmptyWord = "word1, wörter,,word2";
+
+        Pattern pattern = Pattern.compile("^[-\\w\\s]+(?:,[-\\w\\s]+)*$", Pattern.UNICODE_CHARACTER_CLASS);
+        Matcher matcher;
+        
+        matcher = pattern.matcher(correct);
+        assertTrue(matcher.matches());
+        
+        matcher = pattern.matcher(correctWithHyphen);
+        assertTrue(matcher.matches());        
+
+        matcher = pattern.matcher(incorrectWithCommaAtTheEnd);
+        assertFalse(matcher.matches());
+        
+        matcher = pattern.matcher(incorrectWithSeparatedSemicolon);
+        assertFalse(matcher.matches());    
+        
+        matcher = pattern.matcher(incorrectWithEmptyWord);
+        assertFalse(matcher.matches());           
+
+    }
 }

@@ -75,7 +75,9 @@ public class UserInteractionServiceImpl implements UserInteractionService {
 		metadataLine.append("; ");
 
 		// add tags/keywords
-		metadataLine.append(addPodcastFormData.getSuggestedTags());
+
+        String suggestedTags = addPodcastFormData.getSuggestedTags();
+        metadataLine.append(suggestedTags);
 		metadataLine.append("; ");
 
 		// add facebook fan page

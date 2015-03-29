@@ -10,13 +10,14 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 public class SuggestPodcastValidator implements Validator{
-	 
-	private static final int MAX_KEYWORDS_LENGTH = 150;
+
+    private static final int MAX_KEYWORDS_LENGTH = 150;
 	private static final String EMAIL_PATTERN = 
 		"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
- 
-	@Autowired
+    public static final String REGEX_COMMA_SEPARATED_WORDS = "^[-\\w\\s]+(?:,[-\\w\\s]+)*$";
+
+    @Autowired
 	private PodcastDao podcastDao;
 	
 	public boolean supports(Class<?> clazz) {		
@@ -40,10 +41,16 @@ public class SuggestPodcastValidator implements Validator{
 		/* validate email*/		
 		if(!isEmailValid(suggestedPodcast.getEmail())){
 			errors.rejectValue("email", "invalid.required.email");
-		}		
+		}
+
 		/* validate suggested keywords */
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "suggestedTags", "required.keywords");
-		if(suggestedPodcast.getSuggestedTags()!=null && suggestedPodcast.getSuggestedTags().length() > MAX_KEYWORDS_LENGTH) {
+        Pattern pattern = Pattern.compile(REGEX_COMMA_SEPARATED_WORDS, Pattern.UNICODE_CHARACTER_CLASS);
+        Matcher matcher;
+        matcher = pattern.matcher(suggestedPodcast.getSuggestedTags());
+		if( suggestedPodcast.getSuggestedTags() != null
+                && (!matcher.matches()
+                    || suggestedPodcast.getSuggestedTags().length() > MAX_KEYWORDS_LENGTH)) {
 			errors.rejectValue("suggestedTags", "invalid.suggestedTags");
 		}
 		/* validate category */
