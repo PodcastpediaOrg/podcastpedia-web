@@ -5,7 +5,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-	
+<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
+
+<%@ include file="/WEB-INF/jsp/common/recaptcha_options.jsp" %>
+
 <c:if test="${thank_you_message != null }"> 
 	 <div id="thank_you_message" class="common_radius bg_color shadowy common_mar_pad">		
 	 	<spring:message code="contact.thank_you" text="Thank you for your message. We will get back to you as soon as possible."/>		
@@ -69,6 +73,25 @@
 		<p id="contact_form_text_message">			
 			<form:textarea path="message" rows="5" cols="30" class="form_input url_in"/>		
 		</p>
+
+        <p class="captcha_help_p">
+            <spring:message code="add_podcast.spam" text="Help us prevent spam!"/>
+            <br/>
+            <spring:message code="label.captcha_first_part" text="Please type the two words in the image below - press"/>
+            <img id="captcha_help_pic"src="<c:url value='/static/images/recaptcha_refresh.png'/>" alt="refresh" />
+            <spring:message code="label.captcha_second_part" text="for a new challenge"/>
+        </p>
+        <div id="captcha_paragraph">
+            <c:if test="${invalidRecaptcha == true}">
+                <span class="error_form_validation"><spring:message code="invalid.captcha" text="Invalid captcha please try again"/></span>
+            </c:if>
+            <%
+                ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcW3OASAAAAAKEJTHMmp_bo5kny4lZXeDtgcMqC",
+                        "6LcW3OASAAAAAKVX2duVsSy2uMMHL105-jPDrHMD", false);
+                out.print(c.createRecaptchaHtml(null, null));
+            %>
+        </div>
+
 		<spring:message var="send_mess_btn" code="contact.send_message" text="Post comment"/>
 		<input type="submit" value="${send_mess_btn}"  id="send_message" class="submit_form_button"/>
 		<div class="clear"></div>

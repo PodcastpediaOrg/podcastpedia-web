@@ -193,9 +193,9 @@
 		<p class="captcha_help_p">
 			<spring:message code="add_podcast.spam" text="Help us prevent spam!"/>
 			<br/>
-			<spring:message code="comment.captcha_first_part" text="Please type the two words in the image below - press"/>
+			<spring:message code="label.captcha_first_part" text="Please type the two words in the image below - press"/>
 			<img id="captcha_help_pic"src="<c:url value='/static/images/recaptcha_refresh.png'/>" alt="refresh" />
-			<spring:message code="comment.captcha_second_part" text="for a new challenge"/>
+			<spring:message code="label.captcha_second_part" text="for a new challenge"/>
 		 </p>		
 		<div id="captcha_paragraph">
 			<c:if test="${invalidRecaptcha == true}">

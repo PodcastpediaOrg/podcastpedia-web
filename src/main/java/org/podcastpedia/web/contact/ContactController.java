@@ -3,6 +3,8 @@ package org.podcastpedia.web.contact;
 import java.beans.PropertyEditorSupport;
 import java.util.List;
 
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 import org.apache.log4j.Logger;
 import org.podcastpedia.common.domain.util.Utilities;
 import org.podcastpedia.common.types.ContactTopicType;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+
+import javax.servlet.ServletRequest;
 
 
 /**
@@ -41,6 +46,9 @@ public class ContactController {
 	
 	@Autowired
 	private EmailNotificationService emailNotificationService;
+
+    @Autowired
+    private ReCaptchaImpl reCaptcha;
 	
 	/**
 	 * Add an empty searchData object to the model 
@@ -101,21 +109,33 @@ public class ContactController {
 	public String processContactForm(
 				@ModelAttribute("contactForm") ContactForm contactForm,
 				BindingResult result, 
-				Model model
+				Model model,
+                @RequestParam("recaptcha_challenge_field") String challangeField,
+                @RequestParam("recaptcha_response_field") String responseField,
+                ServletRequest servletRequest, SessionStatus sessionStatus
 		){
 		
 		LOG.debug("------ processContactForm : form is being validated and processed -----");
 		contactFormValidator.validate(contactForm, result);
-		
 
-		if(!result.hasErrors()){
+        String remoteAddress = servletRequest.getRemoteAddr();
+        ReCaptchaResponse reCaptchaResponse = this.reCaptcha.checkAnswer(
+                remoteAddress, challangeField, responseField);
+
+		if(!result.hasErrors() && reCaptchaResponse.isValid()){
 			contactService.sendContactMessage(contactForm);
         	emailNotificationService.sendContactNotification(contactForm);
+            sessionStatus.setComplete();
+
         	return "redirect:/contact?tks=true";			
 		} else {
 			List<String> topics = Utilities.getDisplayValues(ContactTopicType.class);
 			model.addAttribute("topics", topics);			
-			model.addAttribute("contactForm", contactForm);	
+			model.addAttribute("contactForm", contactForm);
+            if (!reCaptchaResponse.isValid()) {
+                result.rejectValue("invalidRecaptcha", "invalid.captcha");
+                model.addAttribute("invalidRecaptcha", true);
+            }
     		
 			return "contact_form_def";	
 		}		

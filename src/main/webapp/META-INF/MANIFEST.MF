@@ -7,6 +7,6 @@ Specification-Vendor: Podcastpedia
 Build-Jdk: 1.7.0_45
 Built-By: ama
 Specification-Title: Podcastpedia - knowledge to go
-Created-By: Apache Maven 3.0.4
+Created-By: Apache Maven 3.1.1
 Specification-Version: 0.9.5-SNAPSHOT
 

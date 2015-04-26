@@ -21,7 +21,10 @@ public class ContactForm implements Serializable{
 	private String topic;
 	
 	/** Timestamp when the message was submitted */
-	private Date submissionDate; 
+	private Date submissionDate;
+
+    /** place holder for error on invalid captcha */
+    private String invalidRecaptcha;
 
 	public Date getSubmissionDate() {
 		return submissionDate;
@@ -63,5 +66,11 @@ public class ContactForm implements Serializable{
 		this.topic = topic;
 	}
 
-	
+    public String getInvalidRecaptcha() {
+        return invalidRecaptcha;
+    }
+
+    public void setInvalidRecaptcha(String invalidRecaptcha) {
+        this.invalidRecaptcha = invalidRecaptcha;
+    }
 }
