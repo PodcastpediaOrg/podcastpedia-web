@@ -57,9 +57,48 @@ public class SuggestPodcastValidator implements Validator{
 		if(suggestedPodcast.getCategories() == null){
 			errors.rejectValue("categories", "required.category");
 		}
+
+        /* validate social fan pages */
+        if(isInvalidFacebookFanPageUrl(suggestedPodcast)
+                ) {
+            errors.rejectValue("facebookPage", "invalid.socialFanPage");
+        }
+        if(isInvalidTwitterFanPageUrl(suggestedPodcast)
+                ) {
+            errors.rejectValue("twitterPage", "invalid.socialFanPage");
+        }
+
+        if(isInvalidGPlusFanPageUrl(suggestedPodcast)
+                ) {
+            errors.rejectValue("gplusPage", "invalid.socialFanPage");
+        }
 	}
 
-	private void verifyIdentifier(Errors errors,
+    private boolean isInvalidTwitterFanPageUrl(SuggestedPodcast suggestedPodcast) {
+        return suggestedPodcast.getTwitterPage()!=null
+                && !suggestedPodcast.getTwitterPage().trim().equals("")
+                && !(suggestedPodcast.getTwitterPage().startsWith("http://www.twitter.com")
+                || suggestedPodcast.getTwitterPage().startsWith("https://www.twitter.com")
+                || suggestedPodcast.getTwitterPage().startsWith("https://twitter.com")
+                || suggestedPodcast.getTwitterPage().startsWith("http://twitter.com"));
+    }
+
+    private boolean isInvalidFacebookFanPageUrl(SuggestedPodcast suggestedPodcast) {
+        return suggestedPodcast.getFacebookPage()!=null
+                && !suggestedPodcast.getFacebookPage().trim().equals("")
+                && !(suggestedPodcast.getFacebookPage().startsWith("http://www.facebook.com")
+                    || suggestedPodcast.getFacebookPage().startsWith("https://www.facebook.com")
+                    || suggestedPodcast.getFacebookPage().startsWith("http://facebook.com")
+                    || suggestedPodcast.getFacebookPage().startsWith("https://facebook.com"));
+    }
+
+    private boolean isInvalidGPlusFanPageUrl(SuggestedPodcast suggestedPodcast) {
+        return suggestedPodcast.getGplusPage()!=null
+                && !suggestedPodcast.getGplusPage().trim().equals("")
+                && !(suggestedPodcast.getGplusPage().contains("google.com"));
+    }
+
+    private void verifyIdentifier(Errors errors,
 			SuggestedPodcast suggestedPodcast) {
 		if(suggestedPodcast.getIdentifier() != null && !suggestedPodcast.getIdentifier().trim().isEmpty()){
 			Integer podcastId = podcastDao.getPodcastIdForIdentifier(suggestedPodcast.getIdentifier().trim());

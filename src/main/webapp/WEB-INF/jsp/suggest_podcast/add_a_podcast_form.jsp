@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -151,21 +151,27 @@
 		</p>
 		
 		<div class="label_above_elements">
-			<img class="recommend_social" alt="Facebook" title="Facebook fan page" src="<c:url value="/static/images/logos/fb_51.png"/>">			
-			<label for="facebookPage" class="label">
-				Fanpage Facebook (complete URL - e.g. <em>https://www.facebook.com/Podcastpedia</em>)
-			</label>		
-		</div>	
+			<img class="recommend_social" alt="Facebook" title="Facebook fan page" src="<c:url value="/static/images/logos/fb_51.png"/>">
+		</div>
+        <label for="facebookPage" class="label">
+            Fanpage Facebook (complete URL - e.g. <em>https://www.facebook.com/Podcastpedia</em>)
+        </label>
+        <div class="error">
+            <form:errors path="facebookPage" cssClass="error_form_validation"/>
+        </div>
 		<p>										
 			<form:input path="facebookPage" id="facebookPage"  class="form_input"/>		
 		</p>
 				
 		<div class="label_above_elements">
-			<img class="recommend_social" alt="Twitter" title="Twitter fan page" src="<c:url value="/static/images/logos/twitter_51.png"/>">	
-			<label for="twitterPage" class="label">
+			<img class="recommend_social" alt="Twitter" title="Twitter fan page" src="<c:url value="/static/images/logos/twitter_51.png"/>">
+            <label for="twitterPage" class="label">
 				Fanpage Twitter (complete URL - e.g. <em>https://twitter.com/podcastpedia</em>)
 			</label>		
-		</div>	
+		</div>
+        <div class="error">
+            <form:errors path="twitterPage" cssClass="error_form_validation"/>
+        </div>
 		<p>										
 			<form:input path="twitterPage" id="twitterPage"  class="form_input"/>		
 		</p>
@@ -175,7 +181,10 @@
 			<label for="gplusPage" class="label">
 				Fanpage Google Plus (complete URL - e.g. <em>https://google.com/+PodcastpediaOrg</em>)
 			</label>		
-		</div>	
+		</div>
+        <div class="error">
+            <form:errors path="gplusPage" cssClass="error_form_validation"/>
+        </div>
 		<p>										
 			<form:input path="gplusPage" id="gplusPage"  class="form_input"/>		
 		</p>
