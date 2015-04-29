@@ -82,7 +82,8 @@ public class UserInteractionDaoTest {
 		Assert.assertTrue("Data has been replaced", insertRatingForPodcast == 2);
 		
 	}		
-		
+
+    @Ignore //deprecated
 	@Test //was used to test replace functionality in MySql 
 	@Transactional
 	@Rollback(true)	
@@ -95,7 +96,7 @@ public class UserInteractionDaoTest {
 		subscription.setPodcastId(1);
 				
 		Integer insertSubscription = userInteractionDao.insertSubscription(subscription);
-		Assert.assertTrue("Subscription inserted, was not existant", insertSubscription == 1);
+		Assert.assertTrue("Subscription inserted, was not existent", insertSubscription == 1);
 		
 		insertSubscription = userInteractionDao.insertSubscription(subscription);
 		Assert.assertTrue("Subscription is already present for email and podcast", insertSubscription == 0);
