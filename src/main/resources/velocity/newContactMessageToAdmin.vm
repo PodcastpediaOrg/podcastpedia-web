@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h3>Hi Adrian, you have one new contact message!</h3>
+		<h3>Hi Podcastpedia admin team, you have one new contact message!</h3>
 		<p>
 			from - ${newMessage.name}
 		</p>
