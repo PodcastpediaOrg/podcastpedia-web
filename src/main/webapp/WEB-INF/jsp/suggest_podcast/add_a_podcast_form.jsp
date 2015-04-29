@@ -152,10 +152,10 @@
 		
 		<div class="label_above_elements">
 			<img class="recommend_social" alt="Facebook" title="Facebook fan page" src="<c:url value="/static/images/logos/fb_51.png"/>">
+            <label for="facebookPage" class="label">
+                Fanpage Facebook (complete URL - e.g. <em>https://www.facebook.com/Podcastpedia</em>)
+            </label>
 		</div>
-        <label for="facebookPage" class="label">
-            Fanpage Facebook (complete URL - e.g. <em>https://www.facebook.com/Podcastpedia</em>)
-        </label>
         <div class="error">
             <form:errors path="facebookPage" cssClass="error_form_validation"/>
         </div>
