@@ -93,7 +93,6 @@ img.right {
   background-color: #f5f5f6; }
 
 .shadowy {
-  -webkit-box-shadow: 3px 3px 4px #28313A;
   box-shadow: 3px 3px 4px #28313A; }
 
 .clear {
@@ -601,7 +600,6 @@ ul.pureCssMenu ul li {
     font-size: 13px;
     background-color: #EEF4FC;
     border-radius: 0 3px 3px 0;
-    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
     cursor: pointer;
     border-style: none;
@@ -614,7 +612,6 @@ ul.pureCssMenu ul li {
     padding-left: 8px;
     border-radius: 3px 0 0 3px;
     width: 100%;
-    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4) inset; }
   #search_bar_form #searchImageWrapper input {
     height: 30px;
@@ -654,7 +651,6 @@ ul.pureCssMenu ul li {
   .pagination ul > li {
     list-style-type: none;
     display: inline-block;
-    -webkit-box-shadow: 3px 3px 4px #28313A;
     box-shadow: 3px 3px 4px #28313A;
     margin: 8px 2px 2px; }
 .pagination a {
@@ -780,7 +776,7 @@ ul.pureCssMenu ul li {
 
 .title_before_form {
   color: #A73030;
-  font-family: Arial, sans-serif;
+  font-family: Arial,sans-serif;
   font-size: 2em;
   margin: 10px; }
 
@@ -793,7 +789,7 @@ ul.pureCssMenu ul li {
 .form_input {
   background-color: #EEF4FC;
   font-family: "Century Gothic", "Gill Sans", Arial, sans-serif;
-  font-size: 0.9em;
+  font-size: .9em;
   width: 210px;
   margin-top: -8px; }
   .form_input:focus {
@@ -808,7 +804,7 @@ ul.pureCssMenu ul li {
 .submit_form_button {
   background-color: #94BADA;
   float: right;
-  font-family: "Century Gothic", "Gill Sans", Arial, sans-serif;
+  font-family: "Century Gothic","Gill Sans",Arial,sans-serif;
   margin: 10px 20px 10px 10px; }
 
 #captcha_help_pic {
@@ -916,7 +912,6 @@ img.recommend_social {
 
 .btn-share {
   background: #3498db;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3498db), to(#217dbb));
   background-image: -webkit-linear-gradient(top, #3498db, #217dbb);
   background-image: linear-gradient(to bottom, #3498db, #217dbb);
   border-radius: 5px;
@@ -928,9 +923,8 @@ img.recommend_social {
   margin-right: 5px; }
   .btn-share:hover {
     background: #369EE4;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#369EE4), to(#2998e2));
-    background-image: -webkit-linear-gradient(top, #369EE4, #2998e2);
-    background-image: linear-gradient(to bottom, #369EE4, #2998e2);
+    background-image: -webkit-linear-gradient(top, #369EE4, #2997e2);
+    background-image: linear-gradient(to bottom, #369EE4, #2997e2);
     text-decoration: none;
     color: #053855; }
   .btn-share:after {
@@ -939,7 +933,6 @@ img.recommend_social {
 /* btn share for website and feed TODO - bring all together with sass */
 .btn-metadata2 {
   background: #3498db;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3498db), to(#217dbb));
   background-image: -webkit-linear-gradient(top, #3498db, #217dbb);
   background-image: linear-gradient(to bottom, #3498db, #217dbb);
   border-radius: 8px;
@@ -950,7 +943,6 @@ img.recommend_social {
   text-decoration: none; }
   .btn-metadata2:hover {
     background: #37A4ED;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#37A4ED), to(#299eec));
     background-image: -webkit-linear-gradient(top, #37A4ED, #299eec);
     background-image: linear-gradient(to bottom, #37A4ED, #299eec);
     text-decoration: none;
@@ -959,9 +951,8 @@ img.recommend_social {
 .btn-metadata1 {
   border-radius: 8px;
   background: #d15c2e;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#d15c2e), to(#a74825));
-  background-image: -webkit-linear-gradient(top, #d15c2e, #a74825);
-  background-image: linear-gradient(to bottom, #d15c2e, #a74825);
+  background-image: -webkit-linear-gradient(top, #d15c2e, #a74a25);
+  background-image: linear-gradient(to bottom, #d15c2e, #a74a25);
   font-family: 'podcastpedia';
   color: #ffffff;
   font-size: 1.2em;
@@ -970,9 +961,8 @@ img.recommend_social {
   margin-right: 5px; }
   .btn-metadata1:hover {
     background: #e67a53;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#e67a53), to(#e46d46));
-    background-image: -webkit-linear-gradient(top, #e67a53, #e46d46);
-    background-image: linear-gradient(to bottom, #e67a53, #e46d46);
+    background-image: -webkit-linear-gradient(top, #e67a53, #e47046);
+    background-image: linear-gradient(to bottom, #e67a53, #e47046);
     text-decoration: none;
     color: #053855; }
 
@@ -992,11 +982,9 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
   /* Set the base colour */
   background-color: #a00;
   /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.15));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.15));
   /* Add a drop shadow */
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
   /* Set the font */
   font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1071,26 +1059,26 @@ a.btn-share:visited, a.btn-metadata1:visited, a.btn-metadata2:visited {
   top: 42px;
   right: -43px;
   -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg); }
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
 .github-fork-ribbon-wrapper.left .github-fork-ribbon {
   top: 42px;
   left: -43px;
   -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg); }
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg); }
 .github-fork-ribbon-wrapper.left-bottom .github-fork-ribbon {
   top: 80px;
   left: -43px;
   -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg); }
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
 .github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
   top: 80px;
   right: -43px;
   -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg); }
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg); }
 
 #podcast_metadata {
   border-radius: 5px;
@@ -1229,7 +1217,7 @@ a.producer-social {
 
 .pub_date, .pub_date_pic {
   font-style: italic;
-  font-size: 0.9em;
+  font-size: .9em;
   margin: 0;
   padding: 2px 0; }
 
@@ -1278,7 +1266,6 @@ a.producer-social {
       width: 162px; }
 
 .fw_bk {
-  -webkit-box-shadow: 3px 3px 4px #28313A;
   box-shadow: 3px 3px 4px #28313A; }
 
 #tags_fw {
@@ -1321,7 +1308,7 @@ a.producer-social {
   #quick_search_form #category, #quick_search_form #language, #quick_search_form #searchTarget, #quick_search_form #mediaType {
     background-color: #E3ECF7;
     font-family: "Century Gothic", "Gill Sans", Arial, sans-serif;
-    font-size: 0.9em;
+    font-size: .9em;
     margin-top: -2px;
     width: 100px; }
   #quick_search_form #category {
@@ -1329,7 +1316,7 @@ a.producer-social {
   #quick_search_form #orderBy {
     background-color: #E3ECF7;
     font-family: "Century Gothic", "Gill Sans", Arial, sans-serif;
-    font-size: 0.9em;
+    font-size: .9em;
     margin-top: -2px;
     width: 100px;
     margin-right: 15px;

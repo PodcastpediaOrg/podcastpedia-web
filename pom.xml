@@ -227,6 +227,8 @@
 								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 							</manifest>
 						</archive>
+                        <packagingExcludes>src/main/webapp/static/node_modules/</packagingExcludes>
+                        <warSourceExcludes>static/node_modules/,src/main/webapp/static/node_modules/</warSourceExcludes>
 						<warName>ROOT</warName>
 					</configuration>
 					<executions>

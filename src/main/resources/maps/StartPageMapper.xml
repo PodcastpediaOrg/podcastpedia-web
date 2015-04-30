@@ -104,50 +104,7 @@
     ORDER BY rating DESC
     	limit 0, #{value};
   </select>
-    
-  <select id="getTopRatedPodcasts" resultMap="podcastsMap" parameterType="Integer">
-    SELECT
-    	p.podcast_id,
-    	p.url,
-    	p.identifier,
-    	p.number_visitors,
-    	p.description,
-    	p.podcast_image_url,
-    	p.title,
-    	p.last_episode_url,
-    	p.title_in_url,
-    	p.publication_date 	
-    FROM
-    	podcasts p
-    WHERE
-    	p.availability=200
-    ORDER BY podcast_rating DESC
-    	limit 0, #{value};
-  </select>    
-  
-  <select id="getTopRatedPodcastsWithLanguage" resultMap="podcastsMap" parameterType="hashmap" useCache="false">
-    SELECT
-    	PODCAST_ID,
-    	URL,
-    	identifier,
-    	RATING,
-    	number_ratings,
-    	NUMBER_VISITORS,
-    	DESCRIPTION,
-    	PODCAST_IMAGE_URL,
-    	TITLE,
-    	last_episode_url,
-    	title_in_url,
-    	publication_date  
-    FROM
-    	podcasts
-    WHERE
-    	availability=200
-    	AND
-    	language_code = #{languageCode}
-    ORDER BY rating DESC
-    	limit 0, #{numberOfResults};
-  </select>
+
     
   <select id="getRandomPodcasts" resultMap="podcastsMap" parameterType="Integer" useCache="false">
     SELECT

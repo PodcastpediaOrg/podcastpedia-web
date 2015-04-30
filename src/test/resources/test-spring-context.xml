@@ -93,7 +93,11 @@
     <import resource="data-source.xml"/>  
     
     <!-- ========================= Service beans configuration ========================= -->
-	<bean id="podcastService" class="org.podcastpedia.web.podcasts.PodcastServiceImpl"/>
+    <bean id="podcastService" class="org.podcastpedia.web.podcasts.PodcastServiceImpl">
+        <property name="podcastDao" ref="podcastDao"/>
+        <property name="episodeDao" ref="episodeDao"/>
+        <property name="configService" ref="configService"/>
+    </bean>
 	<bean id="searchService" class="org.podcastpedia.web.searching.SearchServiceImpl"/>
 	<bean id="episodeService" class="org.podcastpedia.web.episodes.EpisodeServiceImpl"/>
 	<bean id="configService" class="org.podcastpedia.common.util.config.ConfigServiceImpl">

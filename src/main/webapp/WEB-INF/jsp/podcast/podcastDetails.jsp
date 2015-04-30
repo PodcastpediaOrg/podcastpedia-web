@@ -184,7 +184,6 @@
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
 <!-- dynamic social share -->
-<%@ include file="/WEB-INF/jsp/common/email_subscription_javascript.jsp" %>
 <script src="<c:url value="/static/js/podcast/main.js" />"></script>
 
 <!-- jquery dialogs -->

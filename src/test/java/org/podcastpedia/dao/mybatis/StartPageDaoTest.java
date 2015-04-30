@@ -21,17 +21,6 @@ public class StartPageDaoTest {
 	
 	@Autowired
 	private StartPageDao startPageDao;
-	
-	/** Get top rated podcasts */
-	@Test
-	public void testGetTopRatedPodcasts() throws Exception {
-		LOG.debug(" ------ executing testGetTopRatedPodcasts ------- ");
-			
-		List<Podcast> response= startPageDao.getTopRatedPodcasts(10);	
-		//verify if the podcastId has been set as expected
-		assert response.size() == 10; 	
-		
-	}
 
 	/** Get top rated podcasts */
 	@Test
