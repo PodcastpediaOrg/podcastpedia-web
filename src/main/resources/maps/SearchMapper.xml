@@ -14,7 +14,6 @@
 	    <result column="category_id" property="categoryId" />
 	    <result column="url" property="url" />
 	    <result column="identifier" property="identifier" />
-	    <result column="podcast_rating" property="rating" />
 	    <result column="podcast_number_ratings" property="numberRatings" />
 	    <result column="number_visitors" property="numberOfVisitors" />	     
 	    <result column="DESCRIPTION" property="description" />	   
@@ -31,12 +30,6 @@
     	p.PODCAST_ID, 
     	p.URL, 
     	p.identifier,
-	    <if test="orderBy != null and orderBy.code == 'POPULARITY'">
-			(select sum(rating) / count(rating) from ratings
-			 where podcast_id = p.podcast_id and episode_id=-1) as podcast_rating,
-			(select count(rating)  from ratings
-					 where podcast_id = p.podcast_id and episode_id=-1) as podcast_number_ratings,	    
-	    </if>
     	p.NUMBER_VISITORS,
     	p.DESCRIPTION,
     	p.PODCAST_IMAGE_URL,
@@ -92,10 +85,7 @@
 				</when>
 				<when test="orderBy.code == 'PUBLICATION_DATE'">
 					p.publication_date DESC	
-				</when>	
-				<when test="orderBy.code == 'POPULARITY'">
-					podcast_rating DESC	
-				</when>			
+                </when>
 				<when test="orderBy.code == 'least_rated'">
 					p.rating ASC	
 				</when>	
@@ -231,17 +221,8 @@
 	  e.media_url,
 	  e.publication_date as episode_pub_date,
 	  e.title_in_url as episode_title_in_url,
-	    <if test="orderBy != null and orderBy.code == 'POPULARITY'">
-		(select 
-			sum(rating) / count(rating) 
-		 from ratings
-		 	where 
-		 		podcast_id = e.podcast_id and episode_id=e.episode_id) as episode_rating,
-		(select 
-			count(rating)  from ratings
-		 where 
-		 	podcast_id = e.podcast_id and episode_id=e.episode_id) as episode_number_ratings,	    
-	    </if>
+     <if test="orderBy != null and orderBy.code == 'POPULARITY'">
+     </if>
 	  e.media_type,
 	  e.is_new,
 	  e.length,
@@ -293,10 +274,7 @@
 					</when>
 					<when test="orderBy.code == 'PUBLICATION_DATE'">
 						e.publication_date desc	
-					</when>	
-					<when test="orderBy.code == 'POPULARITY'">
-						episode_rating desc	
-					</when>			
+                    </when>
 					<when test="orderBy.code == 'least_rated'">
 						e.rating asc	
 					</when>	

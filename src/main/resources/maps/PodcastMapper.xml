@@ -9,8 +9,6 @@
 	    <id column="podcast_id" property="podcastId"  />
 	    <result column="url" property="url" />
 	    <result column="identifier" property="identifier" />
-	    <result column="rating" property="rating" />
-	    <result column="numberRatings" property="number_ratings" />
 	    <result column="number_visitors" property="numberOfVisitors" />	     
 	    <result column="DESCRIPTION" property="description" />	   
 	    <result column="PODCAST_IMAGE_URL" property="urlOfImageToDisplay" />	   
@@ -45,8 +43,6 @@
 	    <id column="podcast_id" property="podcastId"  />
 	    <result column="url" property="url" />
 	    <result column="identifier" property="identifier" />
-	    <result column="podcast_rating" property="rating" />
-	    <result column="podcast_number_ratings" property="numberRatings" />
 	    <result column="number_visitors" property="numberOfVisitors" />
 	    <result column="language_code" property="languageCode" />
 	    <result column="podcast_description" property="description" />
@@ -82,8 +78,6 @@
 			<result property="episodeId" column="episode_id"/>
 			<result column="episode_pub_date" property="publicationDate" />  
 			<result column="episode_title_in_url" property="titleInUrl" />
-			<result column="episode_rating" property="rating" />
-			<result column="episode_number_ratings" property="numberRatings" />
 			<result column="is_new" property="isNew"/>
 			<association property="podcastId" column="podcast_id" javaType="Podcast"/>
 		</collection>	
@@ -98,10 +92,6 @@
     	p.podcast_id,
     	p.url,
     	p.identifier,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -133,8 +123,6 @@
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=e.episode_id) as episode_rating,   
       	t.tag_id,
         t.name as tag_name
    	FROM podcasts p
@@ -157,10 +145,6 @@
     	p.podcast_id,
     	p.url,
     	p.identifier,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -192,8 +176,6 @@
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
       	e.is_new,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=e.episode_id) as episode_rating,   
       	t.tag_id,
         t.name as tag_name
    	FROM podcasts p
@@ -216,11 +198,7 @@
     SELECT
     	p.podcast_id,
     	p.url,
-    	p.identifier, 
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
+    	p.identifier,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -259,11 +237,7 @@
     SELECT
     	p.podcast_id,
     	p.url,
-    	p.identifier, 
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
+    	p.identifier,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -302,11 +276,7 @@
     SELECT
     	p.podcast_id,
     	p.url,
-    	p.identifier, 
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = #{value} and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = #{value} and episode_id=-1) as podcast_number_ratings,
+    	p.identifier,
     	p.number_visitors,
     	p.language_code,
     	p.description as podcast_description,
@@ -333,8 +303,6 @@
       	e.episode_id,
       	e.publication_date as episode_pub_date,
       	e.title_in_url as episode_title_in_url,
-      	e.rating as episode_rating,
-      	e.number_ratings as episode_number_ratings,
       	e.is_new,
       	t.tag_id,
         t.name as tag_name
@@ -397,14 +365,5 @@
 			p.identifier= #{value}
 		and
 			p.availability = 200
-	</select>	
-
-	<!-- update RATINGs  -->
-	  <update id="updatePodcastRating" parameterType="java.util.Map">
-		UPDATE podcasts SET
-		  rating = #{newRating},
-		  number_ratings = #{newNumberOfRatings}
-		WHERE
-		  podcast_id = #{podcastId}
-	  </update>			  	  
+	</select>
 </mapper>

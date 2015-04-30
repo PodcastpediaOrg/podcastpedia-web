@@ -58,50 +58,7 @@ public class UserInteractionDaoTest {
 		userInteractionDao.insertSuggestedPodcast(input);
 
 		assert true;
-	}	
-	
-	@Test //was used to test replace functionality in MySql 
-	@Transactional
-	@Rollback(true)
-	public void testAddRatingForEpisode() throws Exception {
-		LOG.debug(" \n\n------ executing CategoryDaoTest.testAddRatingForEpisode -------");
-
-		Rating rating = new Rating();
-		rating.setRatingDate(new Date());
-		rating.setEmail("adrian.matei.1983@gmail.com");
-		rating.setPodcastId(1);
-		rating.setEpisodeId(-1);
-		rating.setName("Adrian");
-		rating.setRating(10);
-		
-		Integer insertRatingForPodcast = userInteractionDao.insertRating(rating);
-		Assert.assertTrue("Data has been inserted, was not existant", insertRatingForPodcast == 1);
-		
-		rating.setRating(20);
-		insertRatingForPodcast = userInteractionDao.insertRating(rating);
-		Assert.assertTrue("Data has been replaced", insertRatingForPodcast == 2);
-		
-	}		
-
-    @Ignore //deprecated
-	@Test //was used to test replace functionality in MySql 
-	@Transactional
-	@Rollback(true)	
-	public void testInsertSubscription() throws Exception {
-		LOG.debug(" \n\n------ executing CategoryDaoTest.testAddRatingForEpisode -------");
-
-		Subscription subscription = new Subscription(); 
-		subscription.setSubscriptionDate(new Date());
-		subscription.setEmail("adrian.matei.1983@gmail.com");
-		subscription.setPodcastId(1);
-				
-		Integer insertSubscription = userInteractionDao.insertSubscription(subscription);
-		Assert.assertTrue("Subscription inserted, was not existent", insertSubscription == 1);
-		
-		insertSubscription = userInteractionDao.insertSubscription(subscription);
-		Assert.assertTrue("Subscription is already present for email and podcast", insertSubscription == 0);
-		
-	}		
+	}
 	
 	@Test  
 	public void testGetTagList() throws Exception {

@@ -110,10 +110,6 @@
     	p.podcast_id,
     	p.url,
     	p.identifier,
-		(select sum(rating) / count(rating) from ratings
-		 where podcast_id = p.podcast_id and episode_id=-1) as podcast_rating,
-		(select count(rating)  from ratings
-				 where podcast_id = p.podcast_id and episode_id=-1) as podcast_number_ratings,
     	p.number_visitors,
     	p.description,
     	p.podcast_image_url,

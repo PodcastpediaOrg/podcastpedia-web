@@ -1,7 +1,5 @@
 package org.podcastpedia.web.userinteraction;
 
-import org.podcastpedia.common.domain.Rating;
-import org.podcastpedia.common.domain.Subscription;
 import org.podcastpedia.web.suggestpodcast.SuggestedPodcast;
 
 /**
@@ -18,30 +16,5 @@ public interface UserInteractionService {
 	 * persistance layer
 	 */
 	public void addSuggestedPodcast(SuggestedPodcast addPodcastFormData);
-
-	/**
-	 * User (email) subscribes for the podcast (podcastId)
-	 */
-	public void addSubscriptionForPodcast(Subscription subscription);
-
-	/**
-	 * Adds rating in the database for podcast
-	 * 
-	 * @param rating
-	 * @param currentNumberOfRatings
-	 */
-	public ItemRatingResponse addRatingForPodcast(Rating rating,
-			Integer currentNumberOfRatings, Float currentRating);
-
-	/**
-	 * Adds rating in the database for the episode
-	 * 
-	 * @param rating
-	 * @param currentNumberOfRatings
-	 * @param currentRating
-	 * @return
-	 */
-	public ItemRatingResponse addRatingForEpisode(Rating rating,
-			Integer currentNumberOfRatings, Float currentRating);
 
 }

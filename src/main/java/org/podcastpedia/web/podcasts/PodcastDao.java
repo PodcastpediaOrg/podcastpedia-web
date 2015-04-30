@@ -47,14 +47,6 @@ public interface PodcastDao {
 	  public void flushPodcastMapperCacheWithInsert(Date currentTimestamp);
 
 	  /**
-	   * Updates the rating of the podcast given its podcastId, newRating and newNumberOfRatings
-	   * as parameters
-	   * 
-	   * @param params
-	   */
-	  public void updatePodcastRating(Map<String, Object> params);
-
-	  /**
 	   * Returns the number of episodes for the given podcast 
 	   * @param podcastId
 	   * @return

@@ -23,14 +23,11 @@ import org.springframework.cache.annotation.Cacheable;
 public class PodcastServiceImpl implements PodcastService {
    
    private static Logger LOG = Logger.getLogger(PodcastServiceImpl.class);
-   
-   @Autowired
+
    private PodcastDao podcastDao;
-   
-   @Autowired
+
    private EpisodeDao episodeDao;   
-   
-   @Autowired
+
    private ConfigService configService;
 	  
 	   	
@@ -72,8 +69,8 @@ public class PodcastServiceImpl implements PodcastService {
    }
    
  
-   /** ==============================  implementation methods start from here on ==============================   
- * @throws BusinessException */
+   /** ==============================  implementation methods start from here on ==============================
+    * * @throws BusinessException */
    @Cacheable(value="podcasts")
    public Podcast getPodcastForIdentifier(String name) throws BusinessException{
 	   
