@@ -6,3 +6,4 @@
 /release.properties
 /.idea
 /podcastpedia-web.iml
+/src/main/webapp/static/node_modules
