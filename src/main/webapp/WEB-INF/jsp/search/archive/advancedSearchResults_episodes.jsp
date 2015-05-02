@@ -20,7 +20,7 @@
 <div class="clear"></div>	
 
 <div class="pagination pagination_top">
-	<%@ include file="pagination_page_episodes.jsp" %>
+	<%@ include file="../pagination_page_episodes.jsp" %>
 </div>
 
 <div class="results_list">
@@ -108,7 +108,7 @@
 		
 	<!--  format to display results " 1 PREVIOUS 4 5 6 7 8 NEXT 20 " -->
 <div class="pagination pagination_bottom">
-	<%@ include file="pagination_page_episodes.jsp" %>
+	<%@ include file="../pagination_page_episodes.jsp" %>
 </div>
 <div class="clear"></div>
 

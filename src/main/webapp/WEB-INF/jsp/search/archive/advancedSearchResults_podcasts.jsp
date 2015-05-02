@@ -17,7 +17,7 @@
 <div class="clear"></div>	
 
 <div class="pagination pagination_top">
-	<%@ include file="pagination_page_podcasts.jsp" %>
+	<%@ include file="../pagination_page_podcasts.jsp" %>
 </div>	
 	
 	<div class="results_list">
@@ -73,7 +73,7 @@
 	</div>		
 	
 <div class="pagination pagination_bottom">
-	<%@ include file="pagination_page_podcasts.jsp" %>
+	<%@ include file="../pagination_page_podcasts.jsp" %>
 </div>	
 <div class="clear"></div>
 	
