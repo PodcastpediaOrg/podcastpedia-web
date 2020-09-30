@@ -1,4 +1,4 @@
-podcastpedia-web
+Podcastpedia- An Amazing Website
 ================
 
 Web application backing the [Podcastpedia.org](http://www.podcastpedia.org) website
